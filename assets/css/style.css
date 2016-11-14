@@ -10,7 +10,7 @@ html, body {
   width: 100%;
   height: 100%;
   background: -webkit-linear-gradient(top left, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('/assets/imgs/home@unauthorize.jpg') center center / cover;
-  background: -o-linear-gradient(top left, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('/assets/imgs/home@unauthorize.jpg') center center / cover;
+  background: -o-linear-gradient(top left, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('assets/imgs/home@unauthorize.jpg') center center / cover;
   background: linear-gradient(to bottom right, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('/assets/imgs/home@unauthorize.jpg') center center / cover;
 }
 

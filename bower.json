@@ -27,6 +27,7 @@
     "leaflet": "^1.0.1",
     "leaflet-timedimension": "^1.0.6",
     "leaflet-d3": "^0.3.8",
-    "progressbar.js": "^1.0.1"
+    "progressbar.js": "^1.0.1",
+    "turf": "^3.5.3"
   }
 }

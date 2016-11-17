@@ -126,7 +126,8 @@ p{
 #progressBar{
   width: 100%;
   height: 2px;
-
+  position: absolute;
+  left: -48%;
 }
 
 #chapters{

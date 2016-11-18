@@ -5,11 +5,16 @@
     <meta charset="utf-8">
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-    <!-- CSS -->
+    <!-- CSS and JS -->
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!-- <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.25.1/mapbox-gl.css' rel='stylesheet'/> -->
 
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.27.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.27.0/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="bower_components/progressbar.js/dist/progressbar.min.js"></script>
+    <!-- <script src="libraries/d3.min.js"></script>-->
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
 
@@ -17,7 +22,7 @@
 
   </head>
 
-  <body id="vis">
+  <body>
 
     <!-- Map -->
     <div id="map"></div>
@@ -34,15 +39,15 @@
 
       <div class="row" id="chapters">
         <div class="col-xs-12 text-center">
-          <h4> Chapter One: The Context</h4>
+          <h4 id="chapterName"> Chapter One: The Context</h4>
         </div>
 
         <div class="col-xs-10 col-xs-offset-1 text-center">
-          <p>The economic growth in oil-producing Gulf States like Saudi Arabia, Qatar, Bahrain, Kuwait, the UAE, and Oman largely tracked in tandem with the price of oil, so that massive economic growth occurred between 1973 and 1980, followed by smaller contractions between 1980 and 1986, and steady but relatively stagnant growth between 1986 and 1998. </p>
+          <p id="chapterDescriptionOne">The economic growth in oil-producing Gulf States like Saudi Arabia, Qatar, Bahrain, Kuwait, the UAE, and Oman largely tracked in tandem with the price of oil, so that massive economic growth occurred between 1973 and 1980, followed by smaller contractions between 1980 and 1986, and steady but relatively stagnant growth between 1986 and 1998. </p>
         </div>
 
         <div class="col-xs-10 col-xs-offset-1 text-center">
-          <p>Following another dramatic price collapse in December 1998 to levels not seen since before 1973, the price of oil began an unprecedented and dramatic rise, peaking only in 2014.  </p>
+          <p id="chapterDescriptionTwo">Following another dramatic price collapse in December 1998 to levels not seen since before 1973, the price of oil began an unprecedented and dramatic rise, peaking only in 2014.  </p>
         </div>
 
       </div>
@@ -63,13 +68,16 @@
           <p>Next</p>
         </div>
       </div>
-    </div>
 
-    <!-- Logo -->
-    <div class="logo-nyu">
-      <img src="assets/imgs/logocenterwhite.png">
-    </div>
+      <!-- Logo -->
+      <div class="row">
+        <div class="col-xs-3 col-xs-offset-4" style="position:absolute;bottom:1.5em;" >
+          <img src="assets/imgs/logocenterwhite.png" style="max-width: 150px;">
+        </div>
+      </div>
 
+
+    </div>
 
     <!-- Info -->
     <!-- <div class="col-xs-4 text-right">
@@ -79,15 +87,8 @@
     </div> -->
 
     <!-- Js -->
-    <script src="libraries/d3.min.js"></script>
-    <script src="libraries/topojson.v1.min.js"></script>
-    <script src="libraries/viewport.js"></script>
-    <script scr="libraries/turf.js"></script>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.25.1/mapbox-gl.js'></script>
-
-    <script src="bower_components/progressbar.js/dist/progressbar.min.js"></script>
-
     <script src="assets/js/map.js"></script>
+    <script src="assets/js/chaptersText.js"></script>
   </body>
 
 </html>

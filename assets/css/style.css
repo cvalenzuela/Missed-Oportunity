@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 html, body {
   background: rgb(52,51,50);
   width: 100%;
@@ -164,3 +166,4 @@ svg {
   height: 100%;
   pointer-events: none;
 }
+

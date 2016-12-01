@@ -8,13 +8,14 @@
     <!-- CSS and JS -->
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.27.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.27.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.css' rel='stylesheet' />
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
     <script src="bower_components/progressbar.js/dist/progressbar.min.js"></script>
-    <!-- <script src="libraries/d3.min.js"></script>-->
-    
+    <script src="libraries/angular.min.js"></script>
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
 
@@ -33,21 +34,21 @@
         <div class="col-xs-12 text-center">
           <h4>Unintended</h4>
           <h4>Consequences</h4>
-          <h6>Human Rights and U.S. Government Purchases in the Persian Gulf</h6>
+          <h6>Forced Labor and Human Trafficking Abroad</h6>
         </div>
       </div>
 
-      <div class="row" id="chapters">
+      <div class="row" id="chapters" ng-controller="Chapters as chapters">
         <div class="col-xs-12 text-center">
-          <h4 id="chapterName"> Chapter One: The Context</h4>
+          <h4 id="chapterName" class="animated fadeIn">Chapter One: Forced Labor</h4>
         </div>
 
         <div class="col-xs-10 col-xs-offset-1 text-center">
-          <p id="chapterDescriptionOne">The economic growth in oil-producing Gulf States like Saudi Arabia, Qatar, Bahrain, Kuwait, the UAE, and Oman largely tracked in tandem with the price of oil, so that massive economic growth occurred between 1973 and 1980, followed by smaller contractions between 1980 and 1986, and steady but relatively stagnant growth between 1986 and 1998. </p>
+          <p id="chapterDescriptionOne">According to the International Labour Organization, forced labor occurs when people are coerced to work through violence, intimidation, and in more subtle ways.</p>
         </div>
 
         <div class="col-xs-10 col-xs-offset-1 text-center">
-          <p id="chapterDescriptionTwo">Following another dramatic price collapse in December 1998 to levels not seen since before 1973, the price of oil began an unprecedented and dramatic rise, peaking only in 2014.  </p>
+          <p id="chapterDescriptionTwo">Many workers are forced to stay in their jobs so they can pay off hefty recruitment fees. Some migrant workers have their identity papers confiscated by their employer, or are threatened with deportation if they attempt to switch jobs.</p>
         </div>
 
       </div>
@@ -71,7 +72,7 @@
 
       <!-- Logo -->
       <div class="row">
-        <div class="col-xs-3 col-xs-offset-4" style="position:absolute;bottom:1.5em;" >
+        <div class="col-xs-3 col-xs-offset-3" style="position:absolute;bottom:1.5em;" >
           <img src="assets/imgs/logocenterwhite.png" style="max-width: 150px;">
         </div>
       </div>
@@ -87,8 +88,10 @@
     </div> -->
 
     <!-- Js -->
-    <script src="assets/js/map.js"></script>
+
     <script src="assets/js/chaptersText.js"></script>
+    <!-- <script src="assets/js/app.js"></script> -->
+    <script src="assets/js/map.js"></script>
   </body>
 
 </html>

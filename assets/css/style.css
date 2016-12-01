@@ -5,14 +5,15 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+   -webkit-font-smoothing: antialiased;
 }
 
 #home{
   width: 100%;
   height: 100%;
-  background: -webkit-linear-gradient(top left, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('/assets/imgs/home@unauthorize.jpg') center center / cover;
-  background: -o-linear-gradient(top left, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('assets/imgs/home@unauthorize.jpg') center center / cover;
-  background: linear-gradient(to bottom right, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('/assets/imgs/home@unauthorize.jpg') center center / cover;
+  background: -webkit-linear-gradient(top left, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('../imgs/home@unauthorize.jpg') center center / cover;
+  background: -o-linear-gradient(top left, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('../imgs/home@unauthorize.jpg') center center / cover;
+  background: linear-gradient(to bottom right, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('../imgs/home@unauthorize.jpg') center center / cover;
 }
 
 h1,h2,h3,h4,h5,h6,p{
@@ -20,7 +21,7 @@ h1,h2,h3,h4,h5,h6,p{
 }
 
 h1{
-  font-size: 4.5em;
+  font-size: 3.6em;
   text-decoration: underline;
 }
 
@@ -52,7 +53,7 @@ p{
 
 
 .title {
-  margin-top: 20em;
+  margin-top: 16em;
 }
 
 .start{
@@ -65,7 +66,7 @@ p{
 
 .logo-nyu {
   position: absolute;
-  bottom: 1%;
+  bottom: 0.5%;
   left: 10%;
 }
 
@@ -107,7 +108,7 @@ p{
   margin: 0;
   padding: 0;
   display: inline-block;
-  font-size: 2.4em;
+  font-size: 1.7em;
   color:white;
   border-bottom: 3px solid white;
 }
@@ -115,7 +116,7 @@ p{
 .description h6{
   font-family: 'Lora', serif;
   padding-top: 1px;
-  font-size: 1em;
+  font-size: 0.9em;
   color:white;
 }
 
@@ -129,10 +130,11 @@ p{
   height: 2px;
   position: absolute;
   left: -48%;
+  top: 15px;
 }
 
 #chapters{
-  margin-top: 100px;
+  margin-top: 40px;
 }
 
 #chapters h4{
@@ -146,7 +148,7 @@ p{
 }
 
 #navegation{
-    margin-top: 10em;
+    margin-top: 2em;
 }
 
 #navegation span{

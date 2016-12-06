@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Muli');
 
 html, body {
   background: rgb(52,51,50);
@@ -165,5 +166,16 @@ svg {
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+#text-div{
+  width: 66%;
+  text-align: center;
+  -webkit-animation-duration: 4s;
+  position: absolute;
+  color: #ffffff;
+  z-index: 100;
+  font-family: 'Muli', sans-serif;
+  font-size: 1.3em;
 }
 

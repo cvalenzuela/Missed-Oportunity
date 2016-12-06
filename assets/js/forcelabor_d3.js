@@ -1,25 +1,22 @@
 var svg = d3.select("#d3").append("svg");
-var texts = ["A square represents 10,000 people.", 
-	"They all together represent the 21 million people who are victims of force labour." ,
-	"11.4 million victims are women and girls and 9.5 million are men and boys.", 
+var texts = ["This square represents 10,000 people.", 
+	"The squares together represent the 21 million people who are victims of force labour." ,
+	"11.4 million victims are women and girls", 
+	"9.5 million are men and boys",
 	"Almost 19 million victims are exploited by private individuals or enterprises.",
-	"Over 2 million by the state or rebel groups.",  
-	"Of those exploited by individuals or enterprises,",
-	 "4.5 million are victims of forced sexual exploitation."
+	"Over 2 million are exploited by the state or rebel groups.", 
+	"Forced labour in the private economy generates US$ 150 billion in illegal profits per year."
 ];
 
 var width  = window.innerWidth, height = window.innerHeight;
 var dimension = 0, squares = []; 
 
-
 var sSize = 11; 
 var unit = sSize - 5;
 var dimension = 46;
-var baseColor = '#FFFFFF';
+var baseColor = '#fafafa';
 var totalSquares = 2100;
 var starttext = 0; 
-var text;
-var text2; 
 //one animation
 //shift it by certain amounts
 for(var j = 0; j < dimension * sSize; j+= sSize){
@@ -29,155 +26,235 @@ for(var j = 0; j < dimension * sSize; j+= sSize){
 				.attr('height', 0)
 				.attr('opacity', 0.80)
 				.attr('x', i + width / 3.3 + ((width / 3) / 2))
-				.attr('y', j + (height / 2) - (dimension * sSize) / 2 + 50)
+				.attr('y', j + (height / 2) - (dimension * sSize) / 2)
 				.style('fill', baseColor);
 		squares.push(rect);
 	}
 }
 
-text = svg.append("text")
-					.attr('x', width / 3.3 + ((width / 3) / 2) + (dimension * sSize) / 2)
-					.attr('y', (height / 2) - (dimension * sSize) / 2 )
-					.attr('font-size', 18)
-					.attr('font-family', '"Open Sans", sans-serif')
-					.attr('text-anchor', 'middle')
-					.style('fill', 'white')
-					.text(texts[0]);
 
-text2 = svg.append("text")
-					.attr('x', width / 3.3 + ((width / 3) / 2) + (dimension * sSize) / 2)
-					.attr('y', (height / 2) - (dimension * sSize) / 2 + 22 )
-					.attr('font-size', 18)
-					.attr('font-family', '"Open Sans", sans-serif')
-					.attr('text-anchor', 'middle')
-					.style('fill', 'white')
-					.text("");
+var d3div = document.getElementById('d3');
+var textDiv = document.createElement("div");
+textDiv.id = "text-div";
 
-//data - 21 million people are victims of forced labour 
-//each square represents 100,00 people
+
 function animation1(){
+	//change size of 1 sqauare in the middle
+	var middle = Math.round(dimension / 2); 
+	var third = Math.round(dimension / 3); 
+	var i = third * dimension + middle;
+	squares[i].transition()
+			.duration(300)
+			.attr("width", unit)
+			.attr("height", unit);
+}
+
+function textAnimation1(){
+	textDiv.style.left = "33%";
+	textDiv.style.top = "40%";
+	textDiv.innerHTML = texts[0];
+	d3div.appendChild(textDiv);
+
+	//animate css
+	textDiv.classList.add("animated");
+	textDiv.classList.add("fadeInDown");
+}
+
+function animation2(){
+	d3div.removeChild(d3div.childNodes[1]);	
+	textDiv.classList.remove("animated");
+	textDiv.classList.remove("fadeInDown");
+
 	var numSquare = totalSquares; 
 
 	for(var i = 0; i < numSquare; i++){
 		squares[i].transition()
-					.duration(600)
+					.duration(300)
 					.delay(function(){
-						return i;
+						return i * 2;
 					})
-					.attr('stroke', '#222222')
 					.attr('width', unit)
 					.attr('height', unit);
 	}
 }
 
-//11.4 million women and girls and 9.5 million men and boys.
-function textAnimation1(){
-	text.transition()
-		.duration(2000)
-		.text(texts[1]);
+
+function textAnimation2(){
+	textDiv.style.left = "33%"; 
+	textDiv.style.top = "11%";
+	textDiv.innerHTML = texts[1];
+	d3div.appendChild(textDiv);
+
+	textDiv.classList.add("animated");
+	textDiv.classList.add("fadeIn");
 }
 
-function animation2(){
 
-	text.transition()
-		.duration(100)
-		.text(texts[2]);
+function animation3(){
+	d3div.removeChild(d3div.childNodes[1]);	
+	textDiv.classList.remove("animated");
+	textDiv.classList.remove("fadeIn");
+	
+	var total = 2100; 
+	var female = 1140; 
+	var i = female; 
+	for(i; i < total; i++){
+		squares[i].transition()
+				.duration(300)
+				.delay(function(){
+				  	return (i - female) * 2;
+				})
+				.attr('width', 0)
+				.attr('height', 0);
+	}
+
+}
+
+function textAnimation3(){
+	textDiv.style.left = "32%";
+	textDiv.style.top = "11%";
+	textDiv.innerHTML = texts[2];
+	d3div.appendChild(textDiv);
+
+	//animate css
+	textDiv.classList.add("animated");
+	textDiv.classList.add("fadeIn");
+}
+
+function animation4(){
+	d3div.removeChild(d3div.childNodes[1]);	
+	textDiv.classList.remove("animated");
+	textDiv.classList.remove("fadeIn");
 
 	var female = 1140; 
 	var male = 950;
-	var total = female + male;
 
-	var i = 0; 
-	var j = female;
-
-	for(i; i < female; i++){
+	for(var i = male; i < female; i++){
 		squares[i].transition()
-				  	.duration(600)
-				  	.delay(function(){
-				  		return i * 2;
-				  	})
-				  	.style('fill', '#C62828');
+				.duration(300)
+				.delay(function(){
+				  	return (i - male) * 2;
+				 })
+				.attr('width', 0)
+				.attr('height', 0);
 	}
-
-	for(j; j < total; j++){
-		squares[j].transition()
-				  	.duration(600)
-				  	.delay(function(){
-				  		return j * 2;
-				  	})
-				  	.style('fill', '#283593');
-	}
-	
 }
 
+function textAnimation4(){
+	textDiv.style.left = "33%";
+	textDiv.style.top = "11%";
+	textDiv.innerHTML = texts[3];
+	d3div.appendChild(textDiv);
 
-//Almost 19 million victims are exploited by private individuals or enterprises 
-////over 2 million by the state or rebel groups.
-function animation3(){
+	//animate css
+	textDiv.classList.add("animated");
+	textDiv.classList.add("fadeIn");
+}
 
-	text.transition()
-		.duration(100)
-		.text(texts[3])
-		.style("fill", "#78909C");
-
-	text2.transition()
-		.duration(100)
-		.text(texts[4])
-		.style("fill", "#FFFFFF");
+function animation5(){
+	d3div.removeChild(d3div.childNodes[1]);	
+	textDiv.classList.remove("animated");
+	textDiv.classList.remove("fadeIn");
 
 	var total = 1900;
-	var all = 2100; 
-	var rest = all - total; 
-	for(var i = 0; i < total; i++){
+	var male = 950;
+
+	for(var i = male; i < total; i++){
 		squares[i].transition()
-				  	.duration(600)
-				  	.delay(function(){
-				  		return i * 2;
-				  	})
-				  	.style('fill', '#78909C')
-	}
-
-
-	//change the rest to dark purple
-	for(var j = total; j < all; j++){
-		squares[j].transition()
-				.duration(600)
+				.duration(300)
 				.delay(function(){
-				  	return j * 2;
+				  	return (i - male) * 2;
 				 })
-				 .style('fill', '#FFFFFF');
+				.attr('width', unit)
+				.attr('height', unit);
 	}
 }
 
-//Of those exploited by individuals or enterprises, 4.5 million are victims of forced sexual exploitation.
-function animation4(){
+function textAnimation5(){
+	textDiv.style.left = "33%";
+	textDiv.style.top = "11%";
+	textDiv.innerHTML = texts[4];
+	d3div.appendChild(textDiv);
 
-	text.transition()
-		.duration(100)
-		.text(texts[5])
-		.style("fill", "white");
+	//animate css
+	textDiv.classList.add("animated");
+	textDiv.classList.add("fadeIn");
+}
 
-	text2.transition()
-		.duration(100)
-		.text(texts[6])
-		.style("fill", "#00BCD4");
 
-	var assult = 450; 
-	for(var i = 0; i < assult; i++){
+function animation6(){
+	d3div.removeChild(d3div.childNodes[1]);	
+	textDiv.classList.remove("animated");
+	textDiv.classList.remove("fadeIn");
+
+	var total = 200;
+	var enterprises = 1900; 
+
+	for(var i = total; i < enterprises; i++){
 		squares[i].transition()
-				.duration(600)
+				.duration(300)
 				.delay(function(){
-				  	return i * 2;
-				})
-				.style('fill', '#00BCD4');
+				  	return (i - total) * 2;
+				 })
+				.attr('width', 0)
+				.attr('height', 0);
 	}
 }
 
+function textAnimation6(){
+	textDiv.style.left = "32%";
+	textDiv.style.top = "11%";
+	textDiv.innerHTML = texts[5];
+	d3div.appendChild(textDiv);
 
-//change it back to all purple first, then chain the animations together
-setTimeout(animation1, 1000);
-setTimeout(textAnimation1, 5000);
-setTimeout(animation2, 13000);
-setTimeout(animation3, 24000);
-setTimeout(animation4, 34000);
+	//animate css
+	textDiv.classList.add("animated");
+	textDiv.classList.add("fadeIn");
+}
 
+
+
+function animation7(){
+
+	d3div.removeChild(d3div.childNodes[1]);	
+	textDiv.classList.remove("animated");
+	textDiv.classList.remove("fadeIn");
+
+	var numSquare = totalSquares; 
+	for(var i = 0; i < numSquare; i++){
+		squares[i].transition()
+					.duration(300)
+					.delay(function(){
+						return i;
+					})
+					.attr('width', 0)
+					.attr('height', 0);
+	}
+}
+
+function textAnimation7(){
+	textDiv.style.left = "33%";
+	textDiv.style.top = "40%";
+	textDiv.innerHTML = texts[6];
+	d3div.appendChild(textDiv);
+
+	//animate css
+	textDiv.classList.add("animated");
+	textDiv.classList.add("fadeIn");
+}
+
+
+setTimeout(animation1, 2000);
+setTimeout(textAnimation1, 3000); 
+setTimeout(animation2, 8000);
+setTimeout(textAnimation2, 13000);
+setTimeout(animation3, 18000); 
+setTimeout(textAnimation3, 20000);
+setTimeout(animation4, 25000);
+setTimeout(textAnimation4, 26000);
+setTimeout(animation5, 31000);
+setTimeout(textAnimation5, 33000);
+setTimeout(animation6, 38000);
+setTimeout(textAnimation6, 42000);
+setTimeout(animation7, 47000);
+setTimeout(textAnimation7, 48000);

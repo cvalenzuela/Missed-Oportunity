@@ -38,6 +38,10 @@
         "composite": {
             "url": "mapbox://mapbox.mapbox-streets-v7,cvalenzuela.2j6kajjn",
             "type": "vector"
+        },
+        "usacontinent": {
+            "url": "mapbox://mapbox.mapbox-streets-v7,cvalenzuela.civpy1dbl02mx2zmu9jgvd85q-9qdc0",
+            "type": "vector"
         }
     },
     "sprite": "mapbox://sprites/cvalenzuela/civhiqsqi00212jo48kbqhy83",
@@ -971,6 +975,21 @@
             }
         },
         {
+          "id": "USA",
+          "type": "fill-extrusion",
+          "source": "usacontinent",
+          "source-layer": "USA",
+          "interactive": true,
+          "layout": {
+              "visibility": "none"
+          },
+          "paint": {
+            "fill-extrusion-base": 0,
+            "fill-extrusion-opacity": 0.4,
+            "fill-extrusion-color": "rgba(0, 255, 0, 0.4)"
+          }
+        },
+        {
             "id": "Countries",
             "type": "fill",
             "source": "composite",
@@ -980,10 +999,24 @@
                 "visibility": "none"
             },
             "paint": {
-              "fill-opacity": 1,
+              "fill-opacity": 0.8 ,
               "fill-color": "hsla(0, 100%, 29%, 0.23)",
               "fill-outline-color": "hsl(0, 0%, 100%)"
             }
+        },
+        {
+            "id": "CountriesHover",
+            "type": "fill",
+            "source": "composite",
+            "source-layer": "ne_10m_admin_0_countries-6howmk",
+            "interactive": true,
+            "filter": ["==", "NAME", "India"],
+            "paint": {
+              "fill-opacity": 1,
+              "fill-color": "hsla(0, 100%, 29%, 0.23)",
+              "fill-outline-color": "rgb(255,255,255)"
+            },
+            "filter": ["==", "NAME", ""]
         },
         {
             "id": "Countries3D",
@@ -1007,21 +1040,6 @@
             "source-layer": "country_label",
             "minzoom": 1,
             "interactive": true,
-            "filter": [
-                "in",
-                "name_en",
-                "Afghanistan",
-                "Bahrain",
-                "Bangladesh",
-                "India",
-                "Nepal",
-                "Oman",
-                "Pakistan",
-                "Qatar",
-                "Saudi Arabia",
-                "Sri Lanka",
-                "United Arab Emirates"
-            ],
             "layout": {
                 "visibility": "none",
                 "text-field": "{name_en}",

@@ -21,13 +21,6 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "p5.js": "p5js#^0.5.4",
-    "three.js": "threejs#*",
-    "d3": "^4.3.0",
-    "leaflet": "^1.0.1",
-    "leaflet-timedimension": "^1.0.6",
-    "leaflet-d3": "^0.3.8",
-    "progressbar.js": "^1.0.1",
-    "turf": "^3.5.3"
+    "d3": "^4.4.0"
   }
 }

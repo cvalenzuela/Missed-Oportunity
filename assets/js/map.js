@@ -3,12 +3,11 @@
 Main File for the Visualization
 
 */
-
 var currentChapter = 1;
 var title = document.getElementById('chapterName');
 var descriptionOne = document.getElementById('chapterDescriptionOne');
 var descriptionTwo = document.getElementById('chapterDescriptionTwo');
-
+var colors = ['#fff7ec','#fee8c8','#fdd49e','#fdbb84','#fc8d59','#ef6548','#d7301f','#b30000','#7f0000']
 // Locations
 var locations = {
   us: [-109.14, 41.20],
@@ -16,10 +15,32 @@ var locations = {
   gulfAndAsiaPlain: [ 50.62, 31.14],
   gulf: [40.101, 25.744],
   world: [-25.3, 24.4],
-  waterZoom : [87.793, 20.085]
+  worldTiltRight : [14.18,18.08],
+  waterZoom : [88.307, 20.099]
 };
 
 var boudaries = ['country-label-lg', 'country-label-md', 'marine-label-lg-pt','marine-label-lg-ln', 'admin-2-boundaries','admin-3-4-boundaries'];
+
+/* Slavery Index Data */
+function loadJSON(callback) {
+  var xobj = new XMLHttpRequest();
+  xobj.overrideMimeType("application/json");
+  xobj.open('GET', 'assets/data/slaveryIndex.json', true); // Replace 'my_data' with the path to your file
+  xobj.onreadystatechange = function () {
+    if (xobj.readyState == 4 && xobj.status == "200") {
+    // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+    callback(xobj.responseText);
+    }
+  };
+  xobj.send(null);
+}
+
+// Call to function with anonymous callback
+loadJSON(function(response) {
+    forcedLaborData = JSON.parse(response);
+    //console.log(forcedLaborData);
+});
+/* Slavery Index Data */
 
 /* Access to Mapbox gl */
 mapboxgl.accessToken = 'pk.eyJ1IjoiY3ZhbGVuenVlbGEiLCJhIjoiY2l2ZzkweTQ3MDFuODJ5cDM2NmRnaG4wdyJ9.P_0JJXX6sD1oX2D0RQeWFA';
@@ -58,18 +79,21 @@ var bar = new ProgressBar.Line(progressBar, {
 // Start with a little animation
 bar.animate(0.01);
 
-/* Select the View depending on the Current Chapter */
+/*== Select the View depending on the Current Chapter ==*/
 function changeChapter(){
 
-  // CH1: Water Zoom and Forced Labor
+  /*= CH1: Water Zoom and Forced Labor =*/
   if(currentChapter == 1){
 
+    // Change the content text
     title.textContent = "Chapter One: Forced Labor, Facts and Figures";
     descriptionOne.textContent = "According to the International Labour Organization, forced labor occurs when people are coerced to work through violence, intimidation, and in more subtle ways. ";
     descriptionTwo.textContent = "Many workers are forced to stay in their jobs so they can pay off hefty recruitment fees. Some migrant workers have their identity papers confiscated by their employer, or are threatened with deportation if they attempt to switch jobs.";
 
+    // Bar
     bar.animate(0.01);
 
+    // Fly to Map
     map.flyTo({
         center: locations.waterZoom,
         zoom : 7.58,
@@ -79,39 +103,142 @@ function changeChapter(){
 
   }
 
-  // CH2: The World
+  /*= CH2: The World =*/
   else if(currentChapter == 2){
 
-    title.textContent = "Chapter Two: The World";
-    descriptionOne.textContent = "There are an estimated 21 - 46 million victims of forced labor worldwide, including victims of commercial sexual exploitation. Many of these victims are forcibly trafficked across borders in order to work.";
-    descriptionTwo.textContent = "Forced labor exists in every country, but according to some estimates, more than half of the world’s forced laborers are located in five countries: India, China, Pakistan, Bangladesh, and Uzbekistan, or in the South and East Asia regions.";
+    // Hide the d3 animation
+    document.getElementById("d3").style.display = 'none';
 
+    // Change the content text
+    title.textContent = "Chapter Two: Regions with Common Forced Labor";
+    descriptionOne.textContent = "Forced labor exists in every country, but according to some estimates, more than half of the world’s forced laborers are located in five countries: India, China, Pakistan, Bangladesh, and Uzbekistan, or in the South and East Asia regions.";
+    descriptionTwo.textContent = "Here are the 50 worst countries. Forced labor exists in every country, but according to some estimates, more than half of the world’s forced laborers are";
+
+    // Bar
     bar.animate(0.2);
+
+    // Opacity of Water and Satellite
     map.setPaintProperty("satellite", 'raster-opacity', 0.45);
     map.setPaintProperty("water", 'fill-opacity', 0.45);
-    // Highlight selected countries
 
+    document.getElementById("colorsGradient").style.display = 'block';
+
+    // Highlight 50 selected countries
+    for(var key in forcedLaborData){
+      // Normalize the Values
+      var minValue = 128800;
+      var maxValue = 3388400;
+      var normalizeValue =  (forcedLaborData[key].data-minValue)/(maxValue-minValue); // Max value = 18354700, second = 3388400, Min value = 128800
+      var colorLabor = Math.floor(map_range(normalizeValue,0, 1, 0, 8));
+      var opacityLabor = map_range(normalizeValue,0, 1, 0.1, 0.75);
+      if(colorLabor >= 8){
+        colorLabor = 8;
+      }
+      if(opacityLabor >= 1){
+        opacityLabor = 1;
+      }
+
+      map.addLayer({
+        "id": key,
+        "type": "fill",
+        "source": "composite",
+        "source-layer": "ne_10m_admin_0_countries-6howmk",
+        "filter": ["==", "NAME", key],
+        "paint": {
+          "fill-opacity": opacityLabor,
+          "fill-color": colors[colorLabor],
+          "fill-outline-color": colors[colorLabor]
+        }
+      });
+
+      map.addLayer({
+        "id": key+"Name",
+        "type": "symbol",
+        "source": "composite",
+        "source-layer": "country_label",
+        "minzoom": 1,
+        "filter": ["==", "name_en", key],
+        "layout": {
+            "visibility": "visible",
+            "text-field": "{name_en}",
+            "text-font": [
+                "DIN Offc Pro Medium",
+                "Arial Unicode MS Regular"
+            ],
+            "text-size": {
+                "base": 1.1,
+                "stops": [
+                    [
+                        2,
+                        10
+                    ],
+                    [
+                        5,
+                        15
+                    ]
+                ]
+            }
+        },
+        "paint": {
+            "text-color": "hsl(0, 0%, 84%)",
+            "text-opacity": 1
+        }
+        });
+
+
+
+    }
+
+    // Set the Hover Functionality
+    //map.setFilter("Countries", ["in", "NAME", "China"]);
+    //map.setLayoutProperty("Countries", 'visibility', 'visible');
+    map.on("mousemove", function(e) {
+       var features = map.queryRenderedFeatures(e.point, { layers: ["Countries"] });
+       if (features.length) {
+           map.setFilter("CountriesHover", ["==", "NAME", features[0].properties.NAME]);
+       } else {
+           map.setFilter("CountriesHover", ["==", "NAME", ""]);
+       }
+     });
+
+     // Reset the state-fills-hover layer's filter when the mouse leaves the map
+     map.on("mouseout", function() {
+         map.setFilter("CountriesHover", ["==", "NAME", ""]);
+     });
+
+    // Fly to Map
     map.flyTo({
-        center: locations.world,
-        zoom : 1.45,
+        center: locations.worldTiltRight,
+        zoom : 2.09,
         speed: 0.06,
         curve: 2,
         bearing: 0,
         pitch: 0
     });
 
+
+
   }
 
-  // CH3: The US
+  /*= CH3: The US =*/
   else if(currentChapter == 3){
 
+    // Change the content text
     title.textContent = "Chapter Three: The U.S Goverment";
-    descriptionOne.textContent = " Aside from enforcement measures to prevent force labor and trafficking at home, what can countries like the United States do to prevent forced labor and trafficking abroad?";
-    descriptionTwo.textContent = "Aside from enforcement measures to prevent force labor and trafficking at home, what can coun";
+    descriptionOne.textContent = "Aside from enforcement measures to prevent force labor and trafficking at home, what can countries like the United States do to prevent forced labor and trafficking abroad?";
+    descriptionTwo.textContent = "Forced labor exists in every country, but according to some estimates, more than half of the world’s forced laborers are located in five countries: India, China, Pakistan, Bangladesh, and Uzbekistan, or in the South and East Asia regions.";
 
-    // map.setFilter('Countries', ['==', 'NAME', 'United States']);
-    // map.setLayoutProperty('Countries', 'visibility', 'visible');
+    // Remove Previous Layers
+    document.getElementById("colorsGradient").style.display = 'none';
+    for(var key in forcedLaborData){
+      map.removeLayer(key);
+      map.removeLayer(key+"Name");
+    }
 
+    // Bar
+    bar.animate(0.4);
+
+    // Layouts
     map.setPaintProperty("satellite", 'raster-opacity', 0);
     map.setPaintProperty("water", 'fill-opacity', 0);
     map.setPaintProperty("admin-2-boundaries", 'line-opacity', 0);
@@ -121,20 +248,15 @@ function changeChapter(){
     map.addLayer({
       "id": "electronics",
       "type": "fill-extrusion",
-      "source": "composite",
-      "source-layer": "ne_10m_admin_0_countries-6howmk",
+      "source": "usacontinent",
+      "source-layer": "USA",
       "layout": {
           "visibility": "visible"
       },
-      "filter": [
-          "in",
-          "NAME",
-          "United States"
-      ],
       "paint": {
           "fill-extrusion-base": 0,
           "fill-extrusion-opacity": 0.9,
-          "fill-extrusion-color": "rgba(8, 61, 119, 1)",
+          "fill-extrusion-color": "rgba(25, 100, 126, 1)",
           "fill-extrusion-height": 120000
       }
     });
@@ -142,20 +264,15 @@ function changeChapter(){
     map.addLayer({
       "id": "minerals",
       "type": "fill-extrusion",
-      "source": "composite",
-      "source-layer": "ne_10m_admin_0_countries-6howmk",
+      "source": "usacontinent",
+      "source-layer": "USA",
       "layout": {
           "visibility": "visible"
       },
-      "filter": [
-          "in",
-          "NAME",
-          "United States"
-      ],
       "paint": {
           "fill-extrusion-base": 120000,
           "fill-extrusion-opacity": 0.9,
-          "fill-extrusion-color": "rgba(244, 211, 94, 1)",
+          "fill-extrusion-color": "rgba(40, 175, 176, 1)",
           "fill-extrusion-height": 560000
       }
     });
@@ -163,37 +280,36 @@ function changeChapter(){
     map.addLayer({
       "id": "security",
       "type": "fill-extrusion",
-      "source": "composite",
-      "source-layer": "ne_10m_admin_0_countries-6howmk",
+      "source": "usacontinent",
+      "source-layer": "USA",
       "layout": {
           "visibility": "visible"
       },
-      "filter": [
-          "in",
-          "NAME",
-          "United States"
-      ],
       "paint": {
           "fill-extrusion-base": 560000,
           "fill-extrusion-opacity": 0.9,
-          "fill-extrusion-color": "rgba(238, 150, 75, 1)",
+          "fill-extrusion-color": "rgba(244, 211, 94, 1)",
           "fill-extrusion-height": 950000
       }
     });
 
-    // map.setFilter('Countries3D', ['==', 'NAME', 'United States']);
-      // map.setLayoutProperty('Countries3D', 'visibility', 'visible');
-    // map.setPaintProperty('Countries3D', 'fill-extrusion-height', 500000);
+    map.addLayer({
+      "id": "clothes",
+      "type": "fill-extrusion",
+      "source": "usacontinent",
+      "source-layer": "USA",
+      "layout": {
+          "visibility": "visible"
+      },
+      "paint": {
+          "fill-extrusion-base": 950000,
+          "fill-extrusion-opacity": 0.9,
+          "fill-extrusion-color": "rgba(238, 150, 75, 1)",
+          "fill-extrusion-height": 1050000
+      }
+    });
 
-    // showOrHide('visible',gulfCountries3D);
-    // showOrHide('visible',southAsiaCountries3D);
-
-    // showOrHide('visible', groupedCountries);
-    // showOrHide('none',gulfCountries3D);
-    // showOrHide('none',southAsiaCountries3D);
-
-    bar.animate(0.4);
-
+    // Fly to Map
     map.flyTo({
         center: locations.us,
         zoom : 3.15,
@@ -205,38 +321,47 @@ function changeChapter(){
 
   }
 
-  // CH4: What can the US do?
+  /*=  CH4: What can the US do? =*/
   else if(currentChapter == 4){
 
+    // Change the content text
     title.textContent = "Chapter Four: What Can the U.S Government Do?";
-    descriptionOne.textContent = "Aside from enforcement measures to prevent force labor and trafficking at home, what can coun";
-    descriptionTwo.textContent = "Aside from enforcement measures to prevent force labor and trafficking at home, what can coun";
+    descriptionOne.textContent = "Forced labor exists in every country, but according to some estimates, more than half of the world’s forced laborers are located in five countries: India, China, Pakistan, Bangladesh, and Uzbekistan, or in the South and East Asia regions.";
+    descriptionTwo.textContent = "Forced labor exists in every country, but according to some estimates, more than half of the world’s forced laborers are located in five countries: India, China, Pakistan, Bangladesh, and Uzbekistan, or in the South and East Asia regions.";
 
-    showOrHide('none',gulfCountries3D);
-    showOrHide('none',southAsiaCountries3D);
-    showOrHide('none', groupedCountries);
+    // Layouts
+    map.setPaintProperty("satellite", 'raster-opacity', 0.45);
+    map.setPaintProperty("water", 'fill-opacity', 0.5);
+    map.setPaintProperty("admin-2-boundaries", 'line-opacity', 1);
+    map.setPaintProperty("admin-3-4-boundaries", 'line-opacity', 1);
 
+    // Bar
     bar.animate(0.6);
 
+    // Fly to Map
     map.flyTo({
-        center: locations.us,
-        zoom : 3.76,
-        speed: 0.07,
-        curve: 1,
+        center: locations.world,
+        zoom : 1.45,
+        speed: 0.06,
+        curve: 2,
         bearing: 0,
         pitch: 0
     });
 
   }
 
-  // CH5: Persian Gulf
+  /*=  CH5: Persian Gulf =*/
   else if(currentChapter == 5){
 
+    // Change the content text
     title.textContent = "Chapter Five: Where are we now?";
-    descriptionOne.textContent = "Aside from enforcement measures to prevent force labor and trafficking at home, what can coun";
-    descriptionTwo.textContent = "Aside from enforcement measures to prevent force labor and trafficking at home, what can coun";
+    descriptionOne.textContent = "Forced labor exists in every country, but according to some estimates, more than half of the world’s forced laborers are located in five countries: India, China, Pakistan, Bangladesh, and Uzbekistan, or in the South and East Asia regions.";
+    descriptionTwo.textContent = "Forced labor exists in every country, but according to some estimates, more than half of the world’s forced laborers are located in five countries: India, China, Pakistan, Bangladesh, and Uzbekistan, or in the South and East Asia regions.";
 
+    // Bar
     bar.animate(0.8);
+
+    // Fly to Map
     map.flyTo({
         center: locations.world,
         zoom : 1.8,
@@ -245,22 +370,6 @@ function changeChapter(){
     });
 
   }
-
-  // CH6: World View
-  // else if(currentChapter == 6){
-  //
-  //   title.textContent = "Chapter";
-  //   descriptionOne.textContent = "";
-  //   descriptionTwo.textContent = "";
-  //
-  //   bar.animate(1);
-  //   map.flyTo({
-  //       center: locations.world,
-  //       zoom : 2.03,
-  //       speed: 0.2,
-  //       curve: 1
-  //   });
-  // }
 
 }
 
@@ -287,3 +396,8 @@ document.getElementById('previous').addEventListener('click', function () {
     changeChapter();
   }
 });
+
+// Map Function
+function map_range(value, low1, high1, low2, high2) {
+    return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+}

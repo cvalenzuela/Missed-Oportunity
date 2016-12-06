@@ -3,6 +3,7 @@
 Main File for the Visualization
 
 */
+
 var currentChapter = 1;
 var title = document.getElementById('chapterName');
 var descriptionOne = document.getElementById('chapterDescriptionOne');
@@ -54,7 +55,7 @@ var map = new mapboxgl.Map({
     interactive: true,
     attributionControl: true,
     scrollZoom :true
-}); 
+});
 
 /* When the map is loaded */
 map.on('load', function(){

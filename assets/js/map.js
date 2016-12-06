@@ -3,7 +3,6 @@
 Main File for the Visualization
 
 */
-
 var currentChapter = 1;
 var title = document.getElementById('chapterName');
 var descriptionOne = document.getElementById('chapterDescriptionOne');
@@ -44,7 +43,7 @@ loadJSON(function(response) {
 /* Slavery Index Data */
 
 /* Access to Mapbox gl */
-mapboxgl.accessToken = 'pk.eyJ1IjoiYXZpa2FuYXJ1bGEiLCJhIjoiY2l0dDZnejR6MDAwZDJ6bnZidDAybG94dSJ9.WyetO8IYLs4sSKmSsZyuFA';
+mapboxgl.accessToken = 'pk.eyJ1IjoiY3ZhbGVuenVlbGEiLCJhIjoiY2l2ZzkweTQ3MDFuODJ5cDM2NmRnaG4wdyJ9.P_0JJXX6sD1oX2D0RQeWFA';
 var map = new mapboxgl.Map({
     container: 'map',
     style: './stylemap/style.json',

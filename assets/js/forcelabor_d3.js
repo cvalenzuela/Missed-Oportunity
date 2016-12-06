@@ -17,7 +17,6 @@ var dimension = 46;
 var baseColor = '#fafafa';
 var totalSquares = 2100;
 var starttext = 0;
-
 //one animation
 //shift it by certain amounts
 for(var j = 0; j < dimension * sSize; j+= sSize){
@@ -32,6 +31,7 @@ for(var j = 0; j < dimension * sSize; j+= sSize){
 		squares.push(rect);
 	}
 }
+
 
 var d3div = document.getElementById('d3');
 var textDiv = document.createElement("div");
@@ -77,6 +77,7 @@ function animation2(){
 					.attr('height', unit);
 	}
 }
+
 
 function textAnimation2(){
 	textDiv.style.left = "33%";

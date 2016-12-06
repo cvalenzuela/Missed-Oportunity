@@ -21,6 +21,9 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "d3": "^4.4.0"
+    "d3": "^4.3.0"
+  },
+  "resolutions": {
+    "d3": "~3.5"
   }
 }

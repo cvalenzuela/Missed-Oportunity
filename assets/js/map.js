@@ -43,7 +43,6 @@ loadJSON(function(response) {
 /* Slavery Index Data */
 
 /* Access to Mapbox gl */
-//my own access token
 mapboxgl.accessToken = 'pk.eyJ1IjoiYXZpa2FuYXJ1bGEiLCJhIjoiY2l0dDZnejR6MDAwZDJ6bnZidDAybG94dSJ9.WyetO8IYLs4sSKmSsZyuFA';
 var map = new mapboxgl.Map({
     container: 'map',
@@ -55,7 +54,7 @@ var map = new mapboxgl.Map({
     interactive: true,
     attributionControl: true,
     scrollZoom :true
-});
+}); 
 
 /* When the map is loaded */
 map.on('load', function(){

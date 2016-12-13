@@ -244,17 +244,19 @@ function textAnimation7(){
 }
 
 
-setTimeout(animation1, 2000);
-setTimeout(textAnimation1, 3000);
-setTimeout(animation2, 8000);
-setTimeout(textAnimation2, 13000);
-setTimeout(animation3, 18000);
-setTimeout(textAnimation3, 20000);
-setTimeout(animation4, 25000);
-setTimeout(textAnimation4, 26000);
-setTimeout(animation5, 31000);
-setTimeout(textAnimation5, 33000);
-setTimeout(animation6, 38000);
-setTimeout(textAnimation6, 42000);
-setTimeout(animation7, 47000);
-setTimeout(textAnimation7, 48000);
+function startAnimation(){
+	setTimeout(animation1, 1000);
+	setTimeout(textAnimation1, 3000);
+	setTimeout(animation2, 8000);
+	setTimeout(textAnimation2, 13000);
+	setTimeout(animation3, 18000);
+	setTimeout(textAnimation3, 20000);
+	setTimeout(animation4, 25000);
+	setTimeout(textAnimation4, 26000);
+	setTimeout(animation5, 31000);
+	setTimeout(textAnimation5, 33000);
+	setTimeout(animation6, 38000);
+	setTimeout(textAnimation6, 42000);
+	setTimeout(animation7, 47000);
+	setTimeout(textAnimation7, 48000);
+}

@@ -150,10 +150,6 @@ p{
   margin-bottom: 50px;
 }
 
-#navegation{
-    margin-top: 10em;
-}
-
 #navegation span{
   color:white;
   font-size: 2em;
@@ -174,17 +170,212 @@ svg {
   height: 20px;
   background: -webkit-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
   background: #fff7ec; /* For browsers that do not support gradients */
- /* For Safari 5.1 to 6.0 */
- background: -webkit-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
- /* For Opera 11.1 to 12.0 */
- background: -o-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
- /* For Fx 3.6 to 15 */
- background: -moz-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
- /* Standard syntax */
- background: linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
+   /* For Safari 5.1 to 6.0 */
+   background: -webkit-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
+   /* For Opera 11.1 to 12.0 */
+   background: -o-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
+   /* For Fx 3.6 to 15 */
+   background: -moz-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
+   /* Standard syntax */
+   background: linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
 }
 
 #text-div{
+  width: 66%;
+  text-align: center;
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+  position: absolute;
+  color: #ffffff;
+  z-index: 100;
+  font-size: 1.3em;
+}
+
+#titleMap{
+  -webkit-animation-duration: 6s;
+  animation-duration: 6s;
+}
+
+.chapterName{
+  -webkit-animation-duration: 6s;
+  animation-duration: 6s;
+  -webkit-animation-delay: 4s;
+  animation-delay: 4s;
+}
+
+.chapterDescriptionOne{
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+  -webkit-animation-delay: 6s;
+  animation-delay: 6s;
+}
+
+.chapterDescriptionTwo{
+  -webkit-animation-duration: 6s;
+  animation-duration: 6s;
+  -webkit-animation-delay: 8s;
+  animation-delay: 8s;
+}
+
+.chapterNameOff{
+  -webkit-animation-duration: 8s;
+  animation-duration: 8s;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.chapterDescriptionOneOff{
+  -webkit-animation-duration: 8s;
+  animation-duration: 8s;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.chapterDescriptionTwoOff{
+  -webkit-animation-duration: 8s;
+  animation-duration: 8s;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.usaDescription{
+  -webkit-animation-duration: 6s;
+  animation-duration: 6s;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+#navegation{
+  margin-top: 10em;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-delay: 12s;
+  animation-delay: 12s;
+  position: absolute;
+  width: 90%;
+  bottom: 12%;
+}
+
+#logoCenter{
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+  -webkit-animation-delay: 10s;
+  animation-delay: 10s;
+  position: absolute;
+  bottom: 2%;
+  left: 20%;
+}
+
+#d3{
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+}
+
+#colorsGradient{
+  -webkit-animation-duration: 6s;
+  animation-duration: 6s;
+  -webkit-animation-delay: 10s;
+  animation-delay: 10s;
+}
+
+#usaDescription{
+  display: none;
+  position: absolute;
+  width: 55%;
+  left:36%;
+  top:18%;
+  text-align: center;
+  color: #ffffff;
+  z-index: 1000;
+  font-size: 1.3em;
+  -webkit-animation-duration: 8s;
+  animation-duration: 8s;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+#credits{
+  display: none;
+  position: absolute;
+  width: 40%;
+  left:45%;
+  top:15%;
+  text-align: center;
+  color: #ffffff;
+  z-index: 1000;
+  font-size: 1em;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+#textUsaDescription{
+  font-size: 1em;
+}
+
+#labelUsaDescription{
+  font-size: 0.6em;
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  padding: 5px;
+  background-color: #41607A;
+}
+
+.creditsTitle{
+  display: inline;
+  font-size: 1.7em;
+  text-decoration: underline;
+}
+
+.creditsSubTitle{
+  display: inline;
+  font-size: 12px;
+  background-color: white;
+  color: black;
+  padding: 2px;
+}
+
+.creditsDownload{
+  margin-top: 15%;
+}
+
+#creditsLogo{
+  margin-top: 7%;
+}
+
+.creditsData{
+  margin-top: 5%;
+}
+
+.creditsLink{
+  margin-top: 2%;
+}
+
+.creditsLink>p{
+  display: inline;
+  font-size: 0.7em;
+  color: white;
+  padding: 2px 5px;
+}
+
+.creditsLink>p>a{
+  color: white;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+  font: 12px sans-serif;
+  background: white;
+  border: 0px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+#text-div-3{
   width: 66%;
   text-align: center;
   -webkit-animation-duration: 4s;
@@ -192,4 +383,40 @@ svg {
   color: #ffffff;
   z-index: 100;
   font-size: 1.3em;
+}
+
+.mapboxgl-popup {
+  max-width: 400px;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+#d3-2{
+  display: none;
+ }
+
+.moveInfinite{
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+}
+
+.stopInfinite{
+  animation-iteration-count: none;
+  -webkit-animation-iteration-count: none;
+}
+
+.militaryBases{
+  border-radius: 50%;
+  background-color: rgb(129, 125, 204);
+  width: 50px;
+  height: 50px;
+  float: right;
+}
+
+.militaryBasesText{
+  font-size: 0.9em;
+  background-color: rgb(129, 125, 204);
+  display: inline-block;
+  padding: 2px;
+  margin-top: 8%;
+  float: left;
 }

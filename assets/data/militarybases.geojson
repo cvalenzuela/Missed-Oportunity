@@ -1,0 +1,10 @@
+{"type":"FeatureCollection",
+	"features": [
+		{"type":"Feature", "properties":{"name":"Afghanistan", "noCamps": 20}, "geometry":{"type":"Point", "coordinates": [65.390623, 33.13755119234614], "id" : "afghanistan"}},
+		{"type":"Feature", "properties":{"name":"Iraq", "noCamps": 30}, "geometry":{"type":"Point", "coordinates": [43.242185500000005, 33.06392419812062], "id" : "iraq"}},
+		{"type":"Feature", "properties":{"name":"Saudi Arabia", "noCamps": 5}, "geometry":{"type":"Point", "coordinates": [44.296873000000005, 24.52713482259779], "id" : "saudiarabia"}},
+		{"type":"Feature", "properties":{"name":"Qatar", "noCamps" : 5}, "geometry":{"type":"Point", "coordinates": [51.196287062500005, 25.28443774698303], "id" : "qatar"}},
+		{"type":"Feature", "properties":{"name":"Bahrain", "noCamps" : 8}, "geometry":{"type":"Point", "coordinates": [50.537107375000005, 26.10612083235552], "id" : "bahrain"}},
+		{"type":"Feature", "properties":{"name":"United Arab Emirates", "noCamps" : 4}, "geometry":{"type":"Point", "coordinates": [54.316404250000005, 23.372513822359483], "id" : "uae"}}
+	]
+}

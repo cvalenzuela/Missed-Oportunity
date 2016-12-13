@@ -1,0 +1,35 @@
+{
+	"name": "sam.gov",
+	"children" : [
+		{
+			"name": "Reasons Not Listed", "size" : 8184, "color": 2, "percent" : 32.7
+		},
+		{
+			"name": "Convictions Related to Medicare and Healthcare Fraud", "size" : 12825, "color": 3, "percent" : 51.2
+		},
+		{
+			"name": "Violation of the Clean Air Act", "size" : 113, "color": 4, "percent": 0.005
+		},
+		{
+			"name": "Violation of the Clean Water Act", "size": 69, "color": 5, "percent": 0.003
+		},
+		{
+			"name": "Convictions Related to Food Stamps Fraud", "size": 2604, "color": 6 , "percent": 10.4
+		},
+		{
+			"name": "Others", "size": 1112, "color": 1, "percent": 0.04
+		},
+		{
+			"name": "Violation of the Davis-Bacon Act", "size": 18, "color": 7, "percent": 0.0007
+		},
+		{
+			"name": "Contracting With the Enemy", "size": 24, "color": 8, "percent": 0.0009
+		},
+		{
+			"name": "Outstanding Debt to the Government", "size": 18, "color": 9, "percent": 0.0007
+		},
+		{
+			"name": "Convictions Related to Department Of Agriculture Violation", "size": 84, "color": 10, "percent": 0.003
+		}
+	]
+}

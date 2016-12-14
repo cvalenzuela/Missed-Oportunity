@@ -19,6 +19,7 @@ var next = document.getElementById("next");
 var previous = document.getElementById("previous");
 var nextasText = document.getElementById("nextAsText");
 var previousasText = document.getElementById("previousAsText");
+var d3div = document.getElementById("d3");
 var heightUsa = 0;
 var opacityUsa = 0;
 
@@ -84,7 +85,7 @@ var map = new mapboxgl.Map({
     center: locations.waterZoom,
     zoom: 7.58,
     hash: true,
-    interactive: true,
+    interactive: false,
     attributionControl: true,
     scrollZoom :true
 });
@@ -198,8 +199,8 @@ function changeChapter(){
     // Hide the d3 animation
     if(document.getElementById("text-div") != null){
       document.getElementById("text-div").setAttribute("class", "animated fadeOut");
-      document.getElementById("d3").setAttribute("class", "animated fadeOut");
-      document.getElementById("d3").style.display = 'none';
+      d3div.setAttribute("class", "animated fadeOut");
+      d3div.style.display = 'none';
     }
 
     // Change the content text
@@ -292,19 +293,19 @@ function changeChapter(){
     // Set the Hover Functionality
     //map.setFilter("Countries", ["in", "NAME", "China"]);
     //map.setLayoutProperty("Countries", 'visibility', 'visible');
-    map.on("mousemove", function(e) {
-       var features = map.queryRenderedFeatures(e.point, { layers: ["Countries"] });
-       if (features.length) {
-           map.setFilter("CountriesHover", ["==", "NAME", features[0].properties.NAME]);
-       } else {
-           map.setFilter("CountriesHover", ["==", "NAME", ""]);
-       }
-     });
-
-     // Reset the state-fills-hover layer's filter when the mouse leaves the map
-     map.on("mouseout", function() {
-         map.setFilter("CountriesHover", ["==", "NAME", ""]);
-     });
+    // map.on("mousemove", function(e) {
+    //    var features = map.queryRenderedFeatures(e.point, { layers: ["Countries"] });
+    //    if (features.length) {
+    //        map.setFilter("CountriesHover", ["==", "NAME", features[0].properties.NAME]);
+    //    } else {
+    //        map.setFilter("CountriesHover", ["==", "NAME", ""]);
+    //    }
+    //  });
+    //
+    //  // Reset the state-fills-hover layer's filter when the mouse leaves the map
+    //  map.on("mouseout", function() {
+    //      map.setFilter("CountriesHover", ["==", "NAME", ""]);
+    //  });
 
     // Fly to Map
     map.flyTo({
@@ -416,7 +417,7 @@ function changeChapter(){
 
     setTimeout(function(){
       textUsaDescription.innerHTML = "About 51% of the value of the US Government purchases are made with only 100 companies";
-      labelUsaDescription.innerHTML = "Top 100 contractors contractors value";
+      labelUsaDescription.innerHTML = "Top 100 contractors value";
       labelUsaDescription.style.backgroundColor = colorsUSA[2];
       usaDescription.setAttribute("class", "animated fadeIn usaDescription");
       map.setPaintProperty("totalAmount", "fill-extrusion-color", colorsUSA[2]);
@@ -526,18 +527,17 @@ function changeChapter(){
     'type' : 'circle',
     'source' : 'basecamps',
     'paint' : {
-      'circle-color' : '#3d3d99',
-      'circle-opacity' : 0.55,
-      //has to be according to number of military bases
+      'circle-color' : '#FF8C00',
+      'circle-opacity' : 0.35,
       'circle-radius' : {
         property: 'noCamps',
         stops:[
-         [4, 15],
-         [30, 40]
+          [1, 6],
+          [142, 50]
         ]
       }
-    }
-   });
+     }
+    });
 
    //popup
    var popup = new mapboxgl.Popup({
@@ -556,9 +556,11 @@ function changeChapter(){
     }
 
     var feature = features[0];
+    // Populate the popup and set its coordinates
+    // based on the feature found.
     popup.setLngLat(feature.geometry.coordinates)
-        .setHTML(feature.properties.noCamps)
-        .addTo(map);
+         .setHTML(feature.properties.name + "<br> <b> Military Base </b> : " + feature.properties.noCamps)
+         .addTo(map);
   });
 
     // Fly to Map
@@ -606,7 +608,7 @@ function changeChapter(){
     // Change the content text
     setTimeout(function(){
       title.setAttribute("class", "animated fadeIn chapterName");
-      title.textContent = "Chapter Five: The FAR and the SAM list";
+      title.textContent = "Chapter Five: The FAR";
       descriptionOne.setAttribute("class", "animated fadeIn chapterDescriptionOne");
       descriptionOne.textContent = "In its procurement code, entitled the Federal Acquisition Regulation (FAR), the United States implements standards for some, but not all, of the rights laid out in the treaties it has ratified. For example, the FAR includes procurement standards to prohibit forced or indentured child labor and human trafficking.";
       descriptionTwo.setAttribute("class", "animated fadeIn chapterDescriptionTwo");
@@ -634,6 +636,7 @@ function changeChapter(){
     setTimeout(function(){
       document.getElementById("d3-2").style.display = 'block';
       document.getElementById("d3-2").setAttribute("class", "animated fadeIn chapterDescriptionOne");
+      textAnimation();
     },5000);
 
     //In case of going backwards

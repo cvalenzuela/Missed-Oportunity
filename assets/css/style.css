@@ -103,7 +103,7 @@ p{
   max-width: 500px;
   height: 100%;
   width: 30%;
-  padding-top: 5%;
+  padding-top: 2%;
   z-index: 99;
 }
 
@@ -387,7 +387,8 @@ div.tooltip {
 
 .mapboxgl-popup {
   max-width: 400px;
-  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #d3-2{
@@ -406,7 +407,7 @@ div.tooltip {
 
 .militaryBases{
   border-radius: 50%;
-  background-color: rgb(129, 125, 204);
+  background-color: rgba(247, 184, 43, 0.72);
   width: 50px;
   height: 50px;
   float: right;
@@ -414,9 +415,37 @@ div.tooltip {
 
 .militaryBasesText{
   font-size: 0.9em;
-  background-color: rgb(129, 125, 204);
+  background-color: rgba(247, 184, 43, 0.72);
   display: inline-block;
   padding: 2px;
   margin-top: 8%;
   float: left;
+}
+
+#text-div-4{
+  width: 66%;
+  text-align: center;
+  -webkit-animation-duration: 4s;
+  position: absolute;
+  color: #ffffff;
+  z-index: 100;
+  font-size: 1.35em;
+}
+
+.labelbody {
+  margin: 2px;
+  background: transparent;
+}
+
+.treemap-label{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1em;
+  color: #343434;
+  padding: 0.5em;
+}
+
+.sam{
+  text-overflow: ellipsis;
+  text-align: left;
+  word-wrap: break-word;
 }

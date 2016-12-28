@@ -4,32 +4,19 @@
     "metadata": {
         "mapbox:autocomposite": true,
         "mapbox:type": "default",
-        "mapbox:groups": {
-            "1444934295202.7542": {
-                "name": "Admin boundaries",
-                "collapsed": false
-            },
-            "1444856144497.7825": {
-                "name": "Country labels",
-                "collapsed": false
-            },
-            "1444862510685.128": {
-                "name": "City labels",
-                "collapsed": true
-            },
-            "92074029ed687081f5db11a2418a07a7": {
-                "name": "Marine Labels",
-                "collapsed": false
-            }
-        }
+        "mapbox:groups": {}
     },
     "center": [
-        31.008322349412907,
-        25.30097944557933
+        -15.978728851687578,
+        13.532232804465878
     ],
-    "zoom": 1.6684708039266,
+    "zoom": 2.105850278976101,
     "bearing": 0,
     "pitch": 0,
+    "transition": {
+      "duration": 8000,
+      "delay": 0
+    },
     "sources": {
         "mapbox://mapbox.satellite": {
             "url": "mapbox://mapbox.satellite",
@@ -40,21 +27,16 @@
             "type": "vector"
         },
         "usacontinent": {
-            "url": "mapbox://mapbox.mapbox-streets-v7,cvalenzuela.civpy1dbl02mx2zmu9jgvd85q-9qdc0",
-            "type": "vector"
+           "url": "mapbox://mapbox.mapbox-streets-v7,cvalenzuela.civpy1dbl02mx2zmu9jgvd85q-9qdc0",
+           "type": "vector"
         }
     },
     "sprite": "mapbox://sprites/cvalenzuela/civhiqsqi00212jo48kbqhy83",
     "glyphs": "mapbox://fonts/cvalenzuela/{fontstack}/{range}.pbf",
-    "transition": {
-      "duration": 15000,
-      "delay": 0
-    },
     "layers": [
         {
             "id": "background",
             "type": "background",
-            "interactive": true,
             "layout": {
                 "visibility": "visible"
             },
@@ -68,115 +50,52 @@
             "type": "fill",
             "source": "composite",
             "source-layer": "water",
-            "interactive": true,
             "layout": {
                 "visibility": "visible"
             },
             "paint": {
                 "fill-color": "hsl(240, 4%, 10%)",
-                "fill-opacity": 0
+                "fill-opacity": 1
             }
         },
         {
-            "id": "admin-3-4-boundaries",
-            "type": "line",
-            "metadata": {
-                "mapbox:group": "1444934295202.7542"
-            },
-            "source": "composite",
-            "source-layer": "admin",
-            "interactive": true,
-            "filter": [
-                "all",
-                [
-                    "==",
-                    "maritime",
-                    0
-                ],
-                [
-                    ">=",
-                    "admin_level",
-                    3
-                ]
-            ],
+            "id": "satellite",
+            "type": "raster",
+            "source": "mapbox://mapbox.satellite",
+            "maxzoom": 20,
             "layout": {
-                "line-join": "round",
-                "line-cap": "round",
                 "visibility": "visible"
             },
             "paint": {
-                "line-dasharray": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            6,
-                            [
-                                2,
-                                0
-                            ]
-                        ],
-                        [
-                            7,
-                            [
-                                2,
-                                2,
-                                6,
-                                2
-                            ]
-                        ]
-                    ]
-                },
-                "line-width": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7,
-                            0.75
-                        ],
-                        [
-                            12,
-                            1.5
-                        ]
-                    ]
-                },
-                "line-opacity": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            2,
-                            0
-                        ],
-                        [
-                            3,
-                            1
-                        ]
-                    ]
-                },
-                "line-color": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            4,
-                            "hsl(0, 0%, 27%)"
-                        ],
-                        [
-                            5,
-                            "hsl(0, 0%, 35%)"
-                        ]
-                    ]
-                }
+                "raster-opacity": 0.44,
+                "raster-saturation": -0.25,
+                "raster-contrast": 0.12,
+                "raster-brightness-min": 0,
+                "raster-brightness-max": 0.53
             }
+        },
+        {
+           "id": "USA",
+           "type": "fill-extrusion",
+           "source": "usacontinent",
+           "source-layer": "USA",
+           "interactive": true,
+           "layout": {
+               "visibility": "none"
+           },
+           "paint": {
+             "fill-extrusion-base": 0,
+             "fill-extrusion-opacity": 0.4,
+             "fill-extrusion-color": "rgba(0, 255, 0, 0.4)"
+           }
         },
         {
             "id": "admin-2-boundaries",
             "type": "line",
-            "metadata": {
-                "mapbox:group": "1444934295202.7542"
-            },
+            "metadata": {},
             "source": "composite",
             "source-layer": "admin",
             "minzoom": 1,
-            "interactive": true,
             "filter": [
                 "all",
                 [
@@ -219,857 +138,21 @@
             }
         },
         {
-            "id": "place-city-md-s",
-            "type": "symbol",
-            "metadata": {
-                "mapbox:group": "1444862510685.128"
-            },
-            "source": "composite",
-            "source-layer": "place_label",
-            "maxzoom": 14,
-            "interactive": true,
-            "filter": [
-                "all",
-                [
-                    "==",
-                    "type",
-                    "city"
-                ],
-                [
-                    "in",
-                    "ldir",
-                    "E",
-                    "S",
-                    "SE",
-                    "SW"
-                ],
-                [
-                    "in",
-                    "scalerank",
-                    3,
-                    4,
-                    5
-                ]
-            ],
-            "layout": {
-                "text-field": "{name_en}",
-                "text-size": {
-                    "base": 0.9,
-                    "stops": [
-                        [
-                            5,
-                            12
-                        ],
-                        [
-                            12,
-                            22
-                        ]
-                    ]
-                },
-                "text-anchor": "top",
-                "text-offset": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7.99,
-                            [
-                                0,
-                                0.1
-                            ]
-                        ],
-                        [
-                            8,
-                            [
-                                0,
-                                0
-                            ]
-                        ]
-                    ]
-                },
-                "text-font": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7,
-                            [
-                                "DIN Offc Pro Regular",
-                                "Arial Unicode MS Regular"
-                            ]
-                        ],
-                        [
-                            8,
-                            [
-                                "DIN Offc Pro Medium",
-                                "Arial Unicode MS Regular"
-                            ]
-                        ]
-                    ]
-                },
-                "icon-image": "dot-10",
-                "symbol-placement": "line",
-                "visibility": "none"
-            },
-            "paint": {
-                "text-halo-width": 1,
-                "text-halo-color": "hsla(0, 0%, 10%, 0.75)",
-                "text-color": "hsl(0, 0%, 90%)",
-                "text-halo-blur": 0,
-                "icon-opacity": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7.99,
-                            1
-                        ],
-                        [
-                            8,
-                            0
-                        ]
-                    ]
-                },
-                "text-opacity": 0
-            }
-        },
-        {
-            "id": "place-city-md-n",
-            "type": "symbol",
-            "metadata": {
-                "mapbox:group": "1444862510685.128"
-            },
-            "source": "composite",
-            "source-layer": "place_label",
-            "maxzoom": 14,
-            "interactive": true,
-            "filter": [
-                "all",
-                [
-                    "==",
-                    "type",
-                    "city"
-                ],
-                [
-                    "in",
-                    "ldir",
-                    "N",
-                    "NE",
-                    "NW",
-                    "W"
-                ],
-                [
-                    "in",
-                    "scalerank",
-                    3,
-                    4,
-                    5
-                ]
-            ],
-            "layout": {
-                "text-size": {
-                    "base": 0.9,
-                    "stops": [
-                        [
-                            5,
-                            12
-                        ],
-                        [
-                            12,
-                            22
-                        ]
-                    ]
-                },
-                "icon-image": "dot-10",
-                "text-font": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7,
-                            [
-                                "DIN Offc Pro Regular",
-                                "Arial Unicode MS Regular"
-                            ]
-                        ],
-                        [
-                            8,
-                            [
-                                "DIN Offc Pro Medium",
-                                "Arial Unicode MS Regular"
-                            ]
-                        ]
-                    ]
-                },
-                "symbol-placement": "line",
-                "visibility": "none",
-                "text-offset": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7.99,
-                            [
-                                0,
-                                -0.25
-                            ]
-                        ],
-                        [
-                            8,
-                            [
-                                0,
-                                0
-                            ]
-                        ]
-                    ]
-                },
-                "text-anchor": "bottom",
-                "text-field": "{name_en}",
-                "text-max-width": 7
-            },
-            "paint": {
-                "text-color": "hsl(0, 0%, 90%)",
-                "text-halo-color": "hsla(0, 0%, 10%, 0.75)",
-                "text-halo-width": 1,
-                "icon-opacity": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7.99,
-                            1
-                        ],
-                        [
-                            8,
-                            0
-                        ]
-                    ]
-                },
-                "text-halo-blur": 0,
-                "text-opacity": 0
-            }
-        },
-        {
-            "id": "place-city-lg-s",
-            "type": "symbol",
-            "metadata": {
-                "mapbox:group": "1444862510685.128"
-            },
-            "source": "composite",
-            "source-layer": "place_label",
-            "minzoom": 1,
-            "maxzoom": 14,
-            "interactive": true,
-            "filter": [
-                "all",
-                [
-                    "<=",
-                    "scalerank",
-                    2
-                ],
-                [
-                    "==",
-                    "type",
-                    "city"
-                ],
-                [
-                    "in",
-                    "ldir",
-                    "E",
-                    "S",
-                    "SE",
-                    "SW"
-                ]
-            ],
-            "layout": {
-                "text-size": {
-                    "base": 0.9,
-                    "stops": [
-                        [
-                            4,
-                            12
-                        ],
-                        [
-                            10,
-                            22
-                        ]
-                    ]
-                },
-                "icon-image": "dot-11",
-                "text-font": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7,
-                            [
-                                "DIN Offc Pro Regular",
-                                "Arial Unicode MS Regular"
-                            ]
-                        ],
-                        [
-                            8,
-                            [
-                                "DIN Offc Pro Medium",
-                                "Arial Unicode MS Regular"
-                            ]
-                        ]
-                    ]
-                },
-                "symbol-placement": "line",
-                "visibility": "none",
-                "text-offset": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7.99,
-                            [
-                                0,
-                                0.15
-                            ]
-                        ],
-                        [
-                            8,
-                            [
-                                0,
-                                0
-                            ]
-                        ]
-                    ]
-                },
-                "text-anchor": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7,
-                            "top"
-                        ],
-                        [
-                            8,
-                            "center"
-                        ]
-                    ]
-                },
-                "text-field": "{name_en}",
-                "text-max-width": 7
-            },
-            "paint": {
-                "text-color": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7,
-                            "hsl(0, 0%, 95%)"
-                        ],
-                        [
-                            9,
-                            "hsl(0, 0%, 90%)"
-                        ]
-                    ]
-                },
-                "text-halo-color": "hsla(0, 0%, 10%, 0.75)",
-                "text-halo-width": 1,
-                "icon-opacity": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7.99,
-                            1
-                        ],
-                        [
-                            8,
-                            0
-                        ]
-                    ]
-                },
-                "text-halo-blur": 0,
-                "text-opacity": 0
-            }
-        },
-        {
-            "id": "place-city-lg-n",
-            "type": "symbol",
-            "metadata": {
-                "mapbox:group": "1444862510685.128"
-            },
-            "source": "composite",
-            "source-layer": "place_label",
-            "minzoom": 1,
-            "maxzoom": 14,
-            "interactive": true,
-            "filter": [
-                "all",
-                [
-                    "<=",
-                    "scalerank",
-                    2
-                ],
-                [
-                    "==",
-                    "type",
-                    "city"
-                ],
-                [
-                    "in",
-                    "ldir",
-                    "N",
-                    "NE",
-                    "NW",
-                    "W"
-                ]
-            ],
-            "layout": {
-                "text-size": {
-                    "base": 0.9,
-                    "stops": [
-                        [
-                            4,
-                            12
-                        ],
-                        [
-                            10,
-                            22
-                        ]
-                    ]
-                },
-                "icon-image": "dot-11",
-                "text-font": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7,
-                            [
-                                "DIN Offc Pro Regular",
-                                "Arial Unicode MS Regular"
-                            ]
-                        ],
-                        [
-                            8,
-                            [
-                                "DIN Offc Pro Medium",
-                                "Arial Unicode MS Regular"
-                            ]
-                        ]
-                    ]
-                },
-                "symbol-placement": "line",
-                "visibility": "none",
-                "text-offset": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7.99,
-                            [
-                                0,
-                                -0.25
-                            ]
-                        ],
-                        [
-                            8,
-                            [
-                                0,
-                                0
-                            ]
-                        ]
-                    ]
-                },
-                "text-anchor": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7,
-                            "bottom"
-                        ],
-                        [
-                            8,
-                            "center"
-                        ]
-                    ]
-                },
-                "text-field": "{name_en}",
-                "text-max-width": 7
-            },
-            "paint": {
-                "text-color": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7,
-                            "hsl(0, 0%, 95%)"
-                        ],
-                        [
-                            9,
-                            "hsl(0, 0%, 90%)"
-                        ]
-                    ]
-                },
-                "text-opacity": 0,
-                "text-halo-color": "hsla(0, 0%, 10%, 0.75)",
-                "text-halo-width": 1,
-                "icon-opacity": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            7.99,
-                            1
-                        ],
-                        [
-                            8,
-                            0
-                        ]
-                    ]
-                },
-                "text-halo-blur": 0
-            }
-        },
-        {
-            "id": "marine-label-lg-ln",
-            "type": "symbol",
-            "metadata": {
-                "mapbox:group": "92074029ed687081f5db11a2418a07a7"
-            },
-            "source": "composite",
-            "source-layer": "marine_label",
-            "minzoom": 1,
-            "maxzoom": 4,
-            "interactive": true,
-            "filter": [
-                "all",
-                [
-                    "==",
-                    "$type",
-                    "LineString"
-                ],
-                [
-                    "==",
-                    "labelrank",
-                    1
-                ]
-            ],
-            "layout": {
-                "text-field": "{name_en}",
-                "text-max-width": 4,
-                "text-letter-spacing": 0.25,
-                "text-line-height": 1.1,
-                "symbol-placement": "line",
-                "text-font": [
-                    "DIN Offc Pro Italic",
-                    "Arial Unicode MS Regular"
-                ],
-                "text-size": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            1,
-                            14
-                        ],
-                        [
-                            4,
-                            30
-                        ]
-                    ]
-                },
-                "visibility": "visible"
-            },
-            "paint": {
-                "text-color": "hsl(0, 0%, 32%)",
-                "text-halo-blur": 0,
-                "text-halo-color": "hsla(0, 0%, 10%, 0.75)",
-                "text-opacity": 0
-            }
-        },
-        {
-            "id": "marine-label-lg-pt",
-            "type": "symbol",
-            "metadata": {
-                "mapbox:group": "92074029ed687081f5db11a2418a07a7"
-            },
-            "source": "composite",
-            "source-layer": "marine_label",
-            "minzoom": 1,
-            "maxzoom": 4,
-            "interactive": true,
-            "filter": [
-                "all",
-                [
-                    "==",
-                    "$type",
-                    "Point"
-                ],
-                [
-                    "==",
-                    "labelrank",
-                    1
-                ]
-            ],
-            "layout": {
-                "text-field": "{name_en}",
-                "text-max-width": 4,
-                "text-letter-spacing": 0.25,
-                "text-line-height": 1.5,
-                "text-font": [
-                    "DIN Offc Pro Italic",
-                    "Arial Unicode MS Regular"
-                ],
-                "text-size": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            1,
-                            14
-                        ],
-                        [
-                            4,
-                            30
-                        ]
-                    ]
-                },
-                "visibility": "visible"
-            },
-            "paint": {
-                "text-color": "hsl(0, 0%, 32%)",
-                "text-halo-blur": 0,
-                "text-halo-color": "hsla(0, 0%, 10%, 0.75)",
-                "text-opacity": 0
-            }
-        },
-        {
-            "id": "country-label-md",
-            "type": "symbol",
-            "metadata": {
-                "mapbox:group": "1444856144497.7825"
-            },
-            "source": "composite",
-            "source-layer": "country_label",
-            "minzoom": 1,
-            "maxzoom": 8,
-            "interactive": true,
-            "filter": [
-                "in",
-                "scalerank",
-                3,
-                4
-            ],
-            "layout": {
-                "text-size": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            3,
-                            10
-                        ],
-                        [
-                            8,
-                            24
-                        ]
-                    ]
-                },
-                "icon-image": "",
-                "text-font": [
-                    "DIN Offc Pro Medium",
-                    "Arial Unicode MS Regular"
-                ],
-                "symbol-placement": "point",
-                "text-justify": "center",
-                "visibility": "none",
-                "text-anchor": "center",
-                "text-field": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            0,
-                            "{code}"
-                        ],
-                        [
-                            2,
-                            "{name_en}"
-                        ]
-                    ]
-                },
-                "text-max-width": 6
-            },
-            "paint": {
-                "text-halo-width": 1.25,
-                "text-halo-color": "hsla(0, 0%, 1%, 0.75)",
-                "text-color": "hsl(0, 0%, 45%)",
-                "text-halo-blur": 0,
-                "text-opacity": 1
-            }
-        },
-        {
-            "id": "country-label-lg",
-            "type": "symbol",
-            "metadata": {
-                "mapbox:group": "1444856144497.7825"
-            },
-            "source": "composite",
-            "source-layer": "country_label",
-            "minzoom": 1,
-            "maxzoom": 7,
-            "interactive": true,
-            "filter": [
-                "in",
-                "scalerank",
-                1,
-                2
-            ],
-            "layout": {
-                "text-size": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            1,
-                            10
-                        ],
-                        [
-                            6,
-                            24
-                        ]
-                    ]
-                },
-                "icon-image": "",
-                "text-transform": "none",
-                "text-font": [
-                    "DIN Offc Pro Medium",
-                    "Arial Unicode MS Regular"
-                ],
-                "symbol-placement": "point",
-                "text-justify": "center",
-                "visibility": "none",
-                "text-anchor": "center",
-                "text-field": "{name_en}",
-                "text-max-width": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            0,
-                            5
-                        ],
-                        [
-                            2,
-                            6
-                        ]
-                    ]
-                }
-            },
-            "paint": {
-                "text-halo-width": 1.25,
-                "text-halo-color": "hsla(0, 0%, 0%, 0.75)",
-                "text-color": "hsl(0, 1%, 50%)",
-                "text-halo-blur": 0,
-                "text-opacity": 1
-            }
-        },
-        {
-            "id": "satellite",
-            "type": "raster",
-            "source": "mapbox://mapbox.satellite",
-            "maxzoom": 20,
-            "interactive": true,
-            "layout": {
-                "visibility": "visible"
-            },
-            "transition": {
-              "duration": 3000,
-              "delay": 1000
-            },
-            "paint": {
-                "raster-opacity": 0.2,
-                "raster-saturation": 0,
-                "raster-contrast": 0.05,
-                "raster-brightness-min": 0,
-                "raster-brightness-max": 0.7
-            }
-        },
-        {
-          "id": "USA",
-          "type": "fill-extrusion",
-          "source": "usacontinent",
-          "source-layer": "USA",
-          "interactive": true,
-          "layout": {
-              "visibility": "none"
-          },
-          "paint": {
-            "fill-extrusion-base": 0,
-            "fill-extrusion-opacity": 0.4,
-            "fill-extrusion-color": "rgba(0, 255, 0, 0.4)"
-          }
-        },
-        {
-            "id": "Countries",
+            "id": "all-countries",
             "type": "fill",
             "source": "composite",
             "source-layer": "ne_10m_admin_0_countries-6howmk",
-            "interactive": true,
             "layout": {
-                "visibility": "none"
+                "visibility": "visible"
             },
             "paint": {
-              "fill-opacity": 0.8 ,
-              "fill-color": "hsla(0, 100%, 29%, 0.23)",
-              "fill-outline-color": "hsl(0, 0%, 100%)"
-            }
-        },
-        {
-            "id": "CountriesHover",
-            "type": "fill",
-            "source": "composite",
-            "source-layer": "ne_10m_admin_0_countries-6howmk",
-            "interactive": true,
-            "filter": ["==", "NAME", "India"],
-            "paint": {
-              "fill-opacity": 1,
-              "fill-color": "hsla(0, 100%, 29%, 0.23)",
-              "fill-outline-color": "rgb(255,255,255)"
-            },
-            "filter": ["==", "NAME", ""]
-        },
-        {
-            "id": "Countries3D",
-            "type": "fill-extrusion",
-            "source": "composite",
-            "source-layer": "ne_10m_admin_0_countries-6howmk",
-            "interactive": true,
-            "layout": {
-                "visibility": "none"
-            },
-            "paint": {
-              "fill-extrusion-base": 0,
-              "fill-extrusion-opacity": 0.4,
-              "fill-extrusion-color": "rgba(0, 255, 0, 0.4)"
-            }
-        },
-        {
-            "id": "SelectedCountries-Name",
-            "type": "symbol",
-            "source": "composite",
-            "source-layer": "country_label",
-            "minzoom": 1,
-            "interactive": true,
-            "layout": {
-                "visibility": "none",
-                "text-field": "{name_en}",
-                "text-font": [
-                    "DIN Offc Pro Medium",
-                    "Arial Unicode MS Regular"
-                ],
-                "text-size": {
-                    "base": 1.1,
-                    "stops": [
-                        [
-                            2,
-                            10
-                        ],
-                        [
-                            5,
-                            15
-                        ]
-                    ]
-                }
-            },
-            "paint": {
-                "text-color": "hsl(0, 0%, 84%)",
-                "text-opacity": 1
+                "fill-opacity": 0
             }
         }
     ],
     "created": "2016-11-14T03:36:54.599Z",
     "id": "civhiqsqi00212jo48kbqhy83",
-    "modified": "2016-11-17T23:24:57.792Z",
+    "modified": "2016-12-27T06:07:53.852Z",
     "owner": "cvalenzuela",
     "draft": false
 }

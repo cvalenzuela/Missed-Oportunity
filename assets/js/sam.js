@@ -1,11 +1,8 @@
 var width = 800, height = 470;
 
-var svg = d3.select("#d3-2").append("svg").attr("width", width).attr("height", height);
-
-
-var fader = function(color) { return d3.interpolateRgb(color, "#fff")(0.2); },
-    color = d3.scaleOrdinal(d3.schemeCategory20.map(fader)),
-    format = d3.format(",d");
+var svg = d3.select("#d3-2").append("svg").attr("width", width).attr("height", height),
+    format = d3.format(",d"),
+    color = ["#9FA8DA", "#FFB74D", "#FF7043", "#9CCC65", "#9575CD", "#BA68C8", "#EF5350", "#26A69A", "#26C6DA", "#66BB6A"];
 
 // Define the div for the tooltip
 var div = d3.select("body").append("div")
@@ -49,8 +46,8 @@ d3.json("assets/data/sam.json", function(error, data) {
       })
       .attr("x", width/1.5)
       .attr("y", height/3.25)
-      .attr("fill", function(d) {
-      	return color(d.data.color);
+      .attr("fill", function(d, i) {
+          return color[i];
       });
 
 
@@ -68,8 +65,7 @@ d3.json("assets/data/sam.json", function(error, data) {
              div.transition()
                     .duration(200)
                     .style("opacity", 1);
-             div.html("<b> Reason For Termination :  </b>" +  d.data.name  + "<br> <b> Contracts Terminated:  </b>" + d.data.size +
-                      "<br> <b> Percentage: </b> " + d.data.percent + "%")
+             div.html("<b> Reason For Termination :  </b>" +  d.data.name  + "<br> <b> Contracts Terminated:  </b>" + d.data.size)
                     .style("left", (d.width / 2) + d.x0 +  width/1.5 + "px")
                     .style("top",  (d.height / 2) + d.y0 +  height/3.25 + "px");
 
@@ -84,7 +80,7 @@ d3.json("assets/data/sam.json", function(error, data) {
           .append("div")
           .attr("class", "treemap-label")
           .text(function(d) {
-              if(d.data.percent < 0.04){
+              if(d.data.size < 1000){
                 return "";
               }
               return d.data.name;
@@ -116,28 +112,25 @@ function sumBySize(d) {
   return d.size;
 }
 
+
 // //text animation
 var d3div2 = document.getElementById('d3-2');
 var textDiv3 = document.createElement("div");
-var textDiv4 = document.createElement("div");
+var thePoint = document.getElementById("thePoint");
+var none = document.getElementById("none");
+
 d3div2.appendChild(textDiv3);
-d3div2.appendChild(textDiv4);
 
 textDiv3.id = "text-div-3";
-textDiv4.id = "text-div-4";
+// var thePoint = document.getElementById("thePoint");
+// var none = document.getElementById("none");
 
 function textAnimation(){
 	textDiv3.style.left = "33%";
 	textDiv3.style.top = "9%";
-	textDiv3.innerHTML = "Since August 1, 2007, at least 25051 individuals and firms have been restricted from obtaining US government contracts due to convictions related to vilations visualized below."
+	textDiv3.innerHTML = "Since August 1, 2007, at least 25,051 individuals and firms have been restricted from obtaining US government contracts due to violations visualized below."
 	textDiv3.classList.add("animated");
 	textDiv3.classList.add("fadeIn");
-
-  textDiv4.style.left = "33%";
-  textDiv4.style.top = "85%";
-  textDiv4.innerHTML = "NONE have been excluded from US government contracts due to human trafficking or forced labor."
-  textDiv4.classList.add("animated");
-  textDiv4.classList.add("fadeIn");
 }
 
 //setTimeout(textAnimation, 3000);

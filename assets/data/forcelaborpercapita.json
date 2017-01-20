@@ -1,0 +1,352 @@
+[
+  {
+    "country": "Dem. Rep. Congo",
+    "name_en": "Democratic Republic of the Congo",
+    "total_slavery": 873100,
+    "population": 4620330,
+    "per_capita_index": 0.188969
+  },
+  {
+    "country": "Dem. Rep. Korea",
+    "name_en": "North Korea",
+    "total_slavery": 1100000,
+    "population": 25155317,
+    "per_capita_index": 0.043728
+  },
+  {
+    "country": "Uzbekistan",
+    "name_en": "Uzbekistan",
+    "total_slavery": 1236600,
+    "population": 31299500,
+    "per_capita_index": 0.039509
+  },
+  {
+    "country": "Cambodia",
+    "name_en": "Cambodia",
+    "total_slavery": 256800,
+    "population": 15577899,
+    "per_capita_index": 0.016485
+  },
+  {
+    "country": "India",
+    "name_en": "India",
+    "total_slavery": 18354700,
+    "population": 1311050527,
+    "per_capita_index": 0.014
+  },
+  {
+    "country": "Syria",
+    "name_en": "Syria",
+    "total_slavery": 257300,
+    "population": 18502413,
+    "per_capita_index": 0.013906
+  },
+  {
+    "country": "Afghanistan",
+    "name_en": "Afghanistan",
+    "total_slavery": 367600,
+    "population": 32526562,
+    "per_capita_index": 0.011302
+  },
+  {
+    "country": "Sudan",
+    "name_en": "Sudan",
+    "total_slavery": 454700,
+    "population": 40234882,
+    "per_capita_index": 0.011301
+  },
+  {
+    "country": "Pakistan",
+    "name_en": "Pakistan",
+    "total_slavery": 2134900,
+    "population": 188924874,
+    "per_capita_index": 0.0113
+  },
+  {
+    "country": "Yemen",
+    "name_en": "Yemen",
+    "total_slavery": 303200,
+    "population": 26832215,
+    "per_capita_index": 0.0113
+  },
+  {
+    "country": "S. Sudan",
+    "name_en": "South Sudan",
+    "total_slavery": 139400,
+    "population": 12339812,
+    "per_capita_index": 0.011297
+  },
+  {
+    "country": "Iraq",
+    "name_en": "Iraq",
+    "total_slavery": 403800,
+    "population": 36423395,
+    "per_capita_index": 0.011086
+  },
+  {
+    "country": "Myanmar",
+    "name_en": "Myanmar",
+    "total_slavery": 515100,
+    "population": 53897154,
+    "per_capita_index": 0.009557
+  },
+  {
+    "country": "Bangladesh",
+    "name_en": "Bangladesh",
+    "total_slavery": 1531300,
+    "population": 160995642,
+    "per_capita_index": 0.009511
+  },
+  {
+    "country": "Guatemala",
+    "name_en": "Guatemala",
+    "total_slavery": 138100,
+    "population": 16342897,
+    "per_capita_index": 0.00845
+  },
+  {
+    "country": "Nepal",
+    "name_en": "Nepal",
+    "total_slavery": 234600,
+    "population": 28513700,
+    "per_capita_index": 0.008228
+  },
+  {
+    "country": "Russia",
+    "name_en": "Russia",
+    "total_slavery": 1048500,
+    "population": 144096812,
+    "per_capita_index": 0.007276
+  },
+  {
+    "country": "Madagascar",
+    "name_en": "Madagascar",
+    "total_slavery": 163400,
+    "population": 24235390,
+    "per_capita_index": 0.006742
+  },
+  {
+    "country": "Morocco",
+    "name_en": "Morocco",
+    "total_slavery": 219700,
+    "population": 34377511,
+    "per_capita_index": 0.006391
+  },
+  {
+    "country": "Venezuela",
+    "name_en": "Venezuela",
+    "total_slavery": 198800,
+    "population": 31108083,
+    "per_capita_index": 0.006391
+  },
+  {
+    "country": "Colombia",
+    "name_en": "Colombia",
+    "total_slavery": 308200,
+    "population": 48228704,
+    "per_capita_index": 0.00639
+  },
+  {
+    "country": "Peru",
+    "name_en": "Peru",
+    "total_slavery": 200500,
+    "population": 31376670,
+    "per_capita_index": 0.00639
+  },
+  {
+    "country": "Tanzania",
+    "name_en": "Tanzania",
+    "total_slavery": 341400,
+    "population": 53470420,
+    "per_capita_index": 0.006385
+  },
+  {
+    "country": "Côte d'Ivoire",
+    "name_en": "Ivory Coast",
+    "total_slavery": 144900,
+    "population": 22701556,
+    "per_capita_index": 0.006383
+  },
+  {
+    "country": "Angola",
+    "name_en": "Angola",
+    "total_slavery": 159700,
+    "population": 25021974,
+    "per_capita_index": 0.006382
+  },
+  {
+    "country": "Uganda",
+    "name_en": "Uganda",
+    "total_slavery": 244400,
+    "population": 39032383,
+    "per_capita_index": 0.006261
+  },
+  {
+    "country": "Thailand",
+    "name_en": "Thailand",
+    "total_slavery": 425500,
+    "population": 67959359,
+    "per_capita_index": 0.006261
+  },
+  {
+    "country": "Iran",
+    "name_en": "Iran",
+    "total_slavery": 495300,
+    "population": 79109272,
+    "per_capita_index": 0.006261
+  },
+  {
+    "country": "Egypt",
+    "name_en": "Egypt",
+    "total_slavery": 572900,
+    "population": 91508084,
+    "per_capita_index": 0.006261
+  },
+  {
+    "country": "Algeria",
+    "name_en": "Algeria",
+    "total_slavery": 248300,
+    "population": 39666519,
+    "per_capita_index": 0.00626
+  },
+  {
+    "country": "Cameroon",
+    "name_en": "Cameroon",
+    "total_slavery": 146100,
+    "population": 23344179,
+    "per_capita_index": 0.006259
+  },
+  {
+    "country": "Turkey",
+    "name_en": "Turkey",
+    "total_slavery": 480300,
+    "population": 78665830,
+    "per_capita_index": 0.006106
+  },
+  {
+    "country": "Mozambique",
+    "name_en": "Mozambique",
+    "total_slavery": 145600,
+    "population": 27977863,
+    "per_capita_index": 0.005204
+  },
+  {
+    "country": "Nigeria",
+    "name_en": "Nigeria",
+    "total_slavery": 875500,
+    "population": 182201962,
+    "per_capita_index": 0.004805
+  },
+  {
+    "country": "Poland",
+    "name_en": "Poland",
+    "total_slavery": 181100,
+    "population": 37999494,
+    "per_capita_index": 0.004766
+  },
+  {
+    "country": "Ukraine",
+    "name_en": "Ukraine",
+    "total_slavery": 210400,
+    "population": 45198200,
+    "per_capita_index": 0.004655
+  },
+  {
+    "country": "South Africa",
+    "name_en": "South Africa",
+    "total_slavery": 248700,
+    "population": 54956920,
+    "per_capita_index": 0.004525
+  },
+  {
+    "country": "Malaysia",
+    "name_en": "Malaysia",
+    "total_slavery": 128800,
+    "population": 30331007,
+    "per_capita_index": 0.004246
+  },
+  {
+    "country": "Ethiopia",
+    "name_en": "Ethiopia",
+    "total_slavery": 411600,
+    "population": 99390750,
+    "per_capita_index": 0.004141
+  },
+  {
+    "country": "Kenya",
+    "name_en": "Kenya",
+    "total_slavery": 188800,
+    "population": 46050302,
+    "per_capita_index": 0.0041
+  },
+  {
+    "country": "Korea",
+    "name_en": "South Korea",
+    "total_slavery": 204900,
+    "population": 50617045,
+    "per_capita_index": 0.004048
+  },
+  {
+    "country": "Argentina",
+    "name_en": "Argentina",
+    "total_slavery": 175500,
+    "population": 43416755,
+    "per_capita_index": 0.004042
+  },
+  {
+    "country": "Philippines",
+    "name_en": "Philippines",
+    "total_slavery": 401000,
+    "population": 100699395,
+    "per_capita_index": 0.003982
+  },
+  {
+    "country": "Mexico",
+    "name_en": "Mexico",
+    "total_slavery": 376800,
+    "population": 127017224,
+    "per_capita_index": 0.002967
+  },
+  {
+    "country": "Indonesia",
+    "name_en": "Indonesia",
+    "total_slavery": 736100,
+    "population": 257563815,
+    "per_capita_index": 0.002858
+  },
+  {
+    "country": "China",
+    "name_en": "China",
+    "total_slavery": 3388400,
+    "population": 1371220000,
+    "per_capita_index": 0.002471
+  },
+  {
+    "country": "Japan",
+    "name_en": "Japan",
+    "total_slavery": 290200,
+    "population": 126958472,
+    "per_capita_index": 0.002286
+  },
+  {
+    "country": "Italy",
+    "name_en": "Italy",
+    "total_slavery": 129600,
+    "population": 60802085,
+    "per_capita_index": 0.002132
+  },
+  {
+    "country": "Vietnam",
+    "name_en": "Vietnam",
+    "total_slavery": 139300,
+    "population": 91703800,
+    "per_capita_index": 0.001519
+  },
+  {
+    "country": "Brazil",
+    "name_en": "Brazil",
+    "total_slavery": 161100,
+    "population": 207847528,
+    "per_capita_index": 0.000775
+  }
+]

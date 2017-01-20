@@ -5,14 +5,16 @@ var texts = ["This square represents 10,000 people.",
 	"9.5 million are men and boys",
 	"Almost 19 million victims are exploited by private individuals or enterprises.",
 	"Over 2 million are exploited by governments and rebel groups.",
-	"Forced labor in the private economy generates US $150 billion in illegal profits per year."
+	"Forced labour in the private economy generates US $150 billion in illegal profits per year."
 ];
 
 var width  = window.innerWidth, height = window.innerHeight;
 var dimension = 0, squares = [];
 
-var color2 = "#fff7ec";
-var color1 = "#288993";
+var color1 = "#8BC34A";
+var color2 = "#ffffff";
+var color3 = "#30B097";
+var color4 = "#fee8c8";
 
 var sSize = 11;
 var unit = sSize - 5;
@@ -20,12 +22,6 @@ var dimension = 46;
 var baseColor = '#fafafa';
 var totalSquares = 2090;
 var starttext = 0;
-
-var d3div = document.getElementById('d3');
-var textDiv = document.getElementById("text-div");
-var textDiv2 = document.createElement("div");
-textDiv2.id = "text-div-2";
-
 //one animation
 //shift it by certain amounts
 for(var j = 0; j < dimension * sSize; j+= sSize){
@@ -34,16 +30,23 @@ for(var j = 0; j < dimension * sSize; j+= sSize){
 				.attr('width', 0)
 				.attr('height', 0)
 				.attr('opacity', 0.80)
-				.attr('x', i + width / 3.3 + ((width / 3) / 2))
+				.attr('x', i + (width/1.5) - (dimension * sSize) / 2)
 				.attr('y', j + (height / 2) - (dimension * sSize) / 2)
 				.style('fill', baseColor);
 		squares.push(rect);
 	}
 }
 
+
+var d3div = document.getElementById('d3');
+var textDiv = document.createElement("div");
+var textDiv2 = document.createElement("div");
+textDiv.id = "text-div";
+textDiv2.id = "text-div-2";
+d3div.appendChild(textDiv);
+d3div.appendChild(textDiv2);
+
 function animation1(){
-	d3div = document.getElementById('d3');
-	textDiv = document.getElementById("text-div");
 	//change size of 1 sqauare in the middle
 	var middle = Math.round(dimension / 2);
 	var third = Math.round(dimension / 3);
@@ -58,15 +61,17 @@ function textAnimation1(){
 	textDiv.style.left = "33%";
 	textDiv.style.top = "30%";
 	textDiv.innerHTML = texts[0];
-	d3div.appendChild(textDiv);
+	//d3div.appendChild(textDiv);
 
 	//animate css
 	textDiv.classList.add("animated");
 	textDiv.classList.add("fadeInDown");
 }
 
+
 function animation2(){
-	d3div.removeChild(d3div.childNodes[1]);
+	//d3div.removeChild(d3div.childNodes[1]);
+	textDiv.innerHTML = "";
 	textDiv.classList.remove("animated");
 	textDiv.classList.remove("fadeInDown");
 
@@ -88,42 +93,44 @@ function textAnimation2(){
 	textDiv.style.left = "33%";
 	textDiv.style.top = "11%";
 	textDiv.innerHTML = texts[1];
-	d3div.appendChild(textDiv);
+	//d3div.appendChild(textDiv);
 
 	textDiv.classList.add("animated");
 	textDiv.classList.add("fadeIn");
 }
 
+
 //11.4 million women and girls and 9.5 million men and boys.
 function animation3(){
-	d3div.removeChild(d3div.childNodes[1]);
+	//d3div.removeChild(d3div.childNodes[1]);
+	textDiv.innerHTML = "";
 	textDiv.classList.remove("animated");
 	textDiv.classList.remove("fadeIn");
 
 	var female = 1140;
-	var male = 950;
-	var total = female + male;
+ 	var male = 950;
+ 	var total = female + male;
 
-	var i = 0;
-	var j = female;
+ 	var i = 0;
+ 	var j = female;
 
-	for(i; i < female; i++){
-		squares[i].transition()
-	 	.duration(600)
-	 	.delay(function(){
-	 	return i * 2;
-	 	})
-	  .style('fill', color1);
-	}
+ 	for(i; i < female; i++){
+ 		squares[i].transition()
+ 				  	.duration(600)
+ 				  	.delay(function(){
+ 				  		return i * 2;
+ 				  	})
+ 				  	.style('fill', color1);
+ 	}
 
-	for(j; j < total; j++){
-		squares[j].transition()
-	  	.duration(600)
-	  	.delay(function(){
-			return j * 2;
-		})
-		.style('fill', color2);
-	}
+ 	for(j; j < total; j++){
+ 		squares[j].transition()
+ 				  	.duration(600)
+ 				  	.delay(function(){
+ 				  		return j * 2;
+ 				  	})
+ 				  	.style('fill', color2);
+ 	}
 
 }
 
@@ -133,147 +140,84 @@ function textAnimation3(){
 	textDiv.style.top = "8%";
 	textDiv.innerHTML = texts[2];
 	textDiv.style.color = color1;
-	d3div.appendChild(textDiv);
+	//d3div.appendChild(textDiv);
 
 	textDiv2.style.left = "33%";
 	textDiv2.style.top = "11%";
 	textDiv2.innerHTML = texts[3];
 	textDiv2.style.color = color2;
-	d3div.appendChild(textDiv2);
+	//d3div.appendChild(textDiv2);
 
-	//animate css
 	textDiv.classList.add("animated");
 	textDiv.classList.add("fadeIn");
 	textDiv2.classList.add("animated");
- 	textDiv2.classList.add("fadeIn");
+	textDiv2.classList.add("fadeIn");
 }
 
 function animation4(){
-	d3div.removeChild(d3div.childNodes[1]);
+	//d3div.removeChild(d3div.childNodes[1]);
+	textDiv.innerHTML = "";
 	textDiv.classList.remove("animated");
 	textDiv.classList.remove("fadeIn");
 
-	d3div.removeChild(d3div.childNodes[1]);
- 	textDiv2.classList.remove("animated");
- 	textDiv2.classList.remove("fadeIn");
+	//d3div.removeChild(d3div.childNodes[1]);
+	textDiv2.innerHTML = "";
+	textDiv2.classList.remove("animated");
+	textDiv2.classList.remove("fadeIn");
 
 	var total = 1900;
 	var all = 2090;
-	var rest = all - total;
-	for(var i = 0; i < total; i++){
-		squares[i].transition()
-		.duration(600)
-	  .delay(function(){
-	 		return i * 2;
-	 	})
-	 	.style('fill', color1)
-	}
+ 	var rest = all - total;
+ 	for(var i = 0; i < total; i++){
+ 		squares[i].transition()
+ 				  	.duration(600)
+ 				  	.delay(function(){
+ 				  		return i * 2;
+ 				  	})
+ 				  	.style('fill', color3)
+ 	}
 
-	for(var j = total; j < all; j++){
-		squares[j].transition()
-	 		.duration(600)
-	 		.delay(function(){
-	 			return j * 2;
-	 		})
-	 		.style('fill', color2);
-	}
+ 	for(var j = total; j < all; j++){
+ 		squares[j].transition()
+ 				.duration(600)
+ 				.delay(function(){
+ 				  	return j * 2;
+ 				 })
+ 				 .style('fill', color4);
+ 	}
 }
 
 function textAnimation4(){
-	textDiv.style.left = "33%";
-	textDiv.style.top = "11%";
-	textDiv.innerHTML = texts[3];
 	textDiv.style.left = "32%";
- 	textDiv.style.top = "8%";
- 	textDiv.innerHTML = texts[4];
- 	textDiv.style.color = color1;
-	d3div.appendChild(textDiv);
+	textDiv.style.top = "8%";
+	textDiv.innerHTML = texts[4];
+	textDiv.style.color = color3;
+	//d3div.appendChild(textDiv);
 
 	textDiv2.style.left = "33%";
- 	textDiv2.style.top = "11%";
- 	textDiv2.innerHTML = texts[5];
- 	textDiv2.style.color = color2;
- 	d3div.appendChild(textDiv2);
+	textDiv2.style.top = "11%";
+	textDiv2.innerHTML = texts[5];
+	textDiv2.style.color = color4;
+	//d3div.appendChild(textDiv2);
 
 	//animate css
 	textDiv.classList.add("animated");
 	textDiv.classList.add("fadeIn");
 	textDiv2.classList.add("animated");
- 	textDiv2.classList.add("fadeIn");
+	textDiv2.classList.add("fadeIn");
 }
+
 
 function animation5(){
-	d3div.removeChild(d3div.childNodes[1]);
+	textDiv.innerHTML = "";
+	//d3div.removeChild(d3div.childNodes[1]);
 	textDiv.classList.remove("animated");
 	textDiv.classList.remove("fadeIn");
 
-	var total = 1900;
-	var male = 950;
-
-	for(var i = male; i < total; i++){
-		squares[i].transition()
-				.duration(300)
-				.delay(function(){
-				  	return (i - male) * 2;
-				 })
-				.attr('width', unit)
-				.attr('height', unit);
-	}
-}
-
-function textAnimation5(){
-	textDiv.style.left = "33%";
-	textDiv.style.top = "11%";
-	textDiv.innerHTML = texts[4];
-	d3div.appendChild(textDiv);
-
-	//animate css
-	textDiv.classList.add("animated");
-	textDiv.classList.add("fadeIn");
-}
-
-
-function animation6(){
-	d3div.removeChild(d3div.childNodes[1]);
-	textDiv.classList.remove("animated");
-	textDiv.classList.remove("fadeIn");
-
-	var total = 200;
-	var enterprises = 1900;
-
-	for(var i = total; i < enterprises; i++){
-		squares[i].transition()
-				.duration(300)
-				.delay(function(){
-				  	return (i - total) * 2;
-				 })
-				.attr('width', 0)
-				.attr('height', 0);
-	}
-}
-
-function textAnimation6(){
-	textDiv.style.left = "32%";
-	textDiv.style.top = "11%";
-	textDiv.innerHTML = texts[5];
-	d3div.appendChild(textDiv);
-
-	//animate css
-	textDiv.classList.add("animated");
-	textDiv.classList.add("fadeIn");
-}
-
-
-
-function animation7(){
-
-	d3div.removeChild(d3div.childNodes[1]);
-	textDiv.classList.remove("animated");
-	textDiv.classList.remove("fadeIn");
-
-	d3div.removeChild(d3div.childNodes[1]);
- 	textDiv2.classList.remove("animated");
- 	textDiv2.classList.remove("fadeIn");
+	//d3div.removeChild(d3div.childNodes[1]);
+	textDiv2.innerHTML = "";
+	textDiv2.classList.remove("animated");
+	textDiv2.classList.remove("fadeIn");
 
 	var numSquare = totalSquares;
 	for(var i = 0; i < numSquare; i++){
@@ -287,33 +231,102 @@ function animation7(){
 	}
 }
 
-function textAnimation7(){
+function textAnimation5(){
 	textDiv.style.left = "33%";
 	textDiv.style.top = "40%";
 	textDiv.innerHTML = texts[6];
 	textDiv.style.color = "#ffffff";
-	d3div.appendChild(textDiv);
-
+	//d3div.appendChild(textDiv);
 	//animate css
 	textDiv.classList.add("animated");
 	textDiv.classList.add("fadeIn");
 }
 
 
-function startAnimation(){
+var function1;
+var function2;
+var function3;
+var function4;
+var function5;
+var function6;
+var function7;
+var function8;
+var function9;
+var function10;
 
-	setTimeout(animation1, 2000);
-  setTimeout(textAnimation1, 3000);
-  setTimeout(animation2, 8000);
-  setTimeout(textAnimation2, 13000);
-  setTimeout(animation3, 18000);
-	setTimeout(textAnimation3, 22000);
-	setTimeout(animation4, 27000);
-	setTimeout(textAnimation4, 30000);
-	//setTimeout(animation5, 31000);
-	//setTimeout(textAnimation5, 33000);
-	//setTimeout(animation6, 38000);
-	//setTimeout(textAnimation6, 42000);
-	setTimeout(animation7, 35000);
-	setTimeout(textAnimation7, 38000);
+var called = false;
+
+function beginAnimation(){
+	called = true;
+
+	function1 = setTimeout(animation1, 2000);
+	function2 = setTimeout(textAnimation1, 3000);
+	function3 = setTimeout(animation2, 8000);
+	function4 = setTimeout(textAnimation2, 13000);
+	function5 = setTimeout(animation3, 18000);
+	function6 = setTimeout(textAnimation3, 22000);
+	function7 = setTimeout(animation4, 27000);
+	function8 = setTimeout(textAnimation4, 30000);
+	function9 = setTimeout(animation5, 35000);
+	function10 = setTimeout(textAnimation5, 38000);
+}
+
+function clearCSS(){
+	if(textDiv.classList.contains("fadeIn")){
+		textDiv.classList.remove("fadeIn");
+	}
+
+	if(textDiv.classList.contains("fadeInDown")){
+		textDiv.classList.remove("fadeInDown");
+	}
+
+	if(textDiv.classList.contains("animated")){
+		textDiv.classList.remove("animated");
+	}
+
+	if(textDiv2.classList.contains("fadeIn")){
+		textDiv2.classList.remove("fadeIn");
+	}
+
+	if(textDiv2.classList.contains("fadeInDown")){
+		textDiv2.classList.remove("fadeInDown");
+	}
+
+	if(textDiv2.classList.contains("animated")){
+		textDiv2.classList.remove("animated");
+	}
+}
+
+
+function clearAnimation(){
+
+	//clear everything
+	console.log("clear");
+	textDiv.innerHTML = "";
+	textDiv2.innerHTML = "";
+	textDiv.style.color = "#ffffff";
+	textDiv2.style.color = "#ffffff";
+
+	clearCSS();
+
+	var numSquare = totalSquares;
+	for(var i = 0; i < numSquare; i++){
+		squares[i]
+			.attr('width', 0)
+			.attr('height', 0)
+			.style("fill", baseColor);
+	}
+
+	if(called) {
+		clearTimeout(function1);
+		clearTimeout(function2);
+		clearTimeout(function3);
+		clearTimeout(function4);
+		clearTimeout(function5);
+		clearTimeout(function6);
+		clearTimeout(function7);
+		clearTimeout(function8);
+		clearTimeout(function9);
+		clearTimeout(function10);
+	}
 }

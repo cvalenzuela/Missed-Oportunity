@@ -24,6 +24,8 @@ var nextasText = document.getElementById("nextAsText");
 var previousasText = document.getElementById("previousAsText");
 var d3div = document.getElementById("d3");
 var textDiv = document.getElementById("text-div");
+var soundIcon = document.getElementById("soundIcon");
+var sound = document.getElementById("sound")
 var heightUsa = 0;
 var heightUsaTwo = 0;
 var heightUsaThree = 0;
@@ -46,6 +48,18 @@ var locations = {
   worldTiltRight : [14.18,18.08],
   waterZoom : [88.307, 20.099]
 };
+
+// Show everything once all data is loaded
+Pace.on('done', function() {
+    if(document.documentElement.clientWidth < 930){
+      document.getElementById("unsupported").style.display = "block";
+      document.getElementById("content").style.display = "none";
+    }
+    else{
+      document.getElementById("content").style.display = "block";
+      document.getElementById("unsupported").style.display = "none";
+    }
+ });
 
 /* Slavery Index Data */
 function loadJSONSlaveIndex(callback) {
@@ -86,20 +100,38 @@ loadJSONMilitaryCamps(function(response){
 });
 /* Military Base Camps */
 
+// Change the Sound Icon
+function soundOnOff(){
+  console.log("here")
+    if (soundIcon.alt == "soundOn"){
+      soundIcon.alt = "soundOff";
+      soundIcon.src = "./assets/imgs/sound_off.png"
+      sound.pause();
+    }
+    else if (soundIcon.alt == "soundOff"){
+      soundIcon.alt= "soundOn";
+      soundIcon.src = "./assets/imgs/sound_on.png"
+      sound.play();
+    }
+}
+
 /* Access to Mapbox gl */
 mapboxgl.accessToken = 'pk.eyJ1IjoiY3ZhbGVuenVlbGEiLCJhIjoiY2l2ZzkweTQ3MDFuODJ5cDM2NmRnaG4wdyJ9.P_0JJXX6sD1oX2D0RQeWFA';
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: './stylemap/style.json',
-    container: 'map',
-    center: locations.waterZoom,
-    zoom: 7.58,
-    hash: true,
-    interactive: true,
-    attributionControl: true,
-    scrollZoom :true
-});
-
+if (!mapboxgl.supported()) {
+    alert('Sorry, but your browser cannot not support this visualization.');
+} else{
+  var map = new mapboxgl.Map({
+      container: 'map',
+      style: './stylemap/style.json',
+      container: 'map',
+      center: locations.waterZoom,
+      zoom: 7.58,
+      hash: true,
+      interactive: false,
+      attributionControl: true,
+      scrollZoom :true
+  });
+}
 /* When the map is loaded */
 map.on('load', function(){
   // Nothing for now
@@ -159,15 +191,12 @@ function map_range(value, low1, high1, low2, high2) {
     return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
 }
 
-Pace.on('done', function() {
-     document.getElementById("content").style.display = "block";
- });
 /*== Select the View depending on the Current Chapter ==*/
 function changeChapter(){
 
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
-  ////////////////////// CH1: Forced Labor Animation //////////////////////////
+  ////////////////////// CH1: Blank Start ////////// //////////////////////////
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
 
@@ -193,6 +222,7 @@ function changeChapter(){
     if(document.getElementById("text-div") != null){
       document.getElementById("text-div").style.display = 'none';
       document.getElementById("d3").style.display = 'none';
+      clearAnimation();
     }
 
     // Opacity of navegation
@@ -228,7 +258,8 @@ function changeChapter(){
       document.getElementById("text-div").style.display = 'block';
       document.getElementById("d3").style.display = 'block';
     }
-    startAnimation();
+    clearAnimation();
+    beginAnimation();
 
     // Bar
     bar.animate(0.2);
@@ -275,6 +306,7 @@ function changeChapter(){
       document.getElementById("text-div").setAttribute("class", "animated fadeOut");
       d3div.setAttribute("class", "animated fadeOut");
       d3div.style.display = 'none';
+      clearAnimation();
     }
 
     // Change the content text
@@ -285,9 +317,9 @@ function changeChapter(){
       title.setAttribute("class", "animated fadeIn chapterName");
       title.textContent = "Chapter Two: Forced Labor Around the World";
       descriptionOne.setAttribute("class", "animated fadeIn chapterDescriptionOne");
-      descriptionOne.textContent = "Forced labor exists in every country, but according to some estimates, more than half of the world’s forced laborers are located in just five countries - India, China, Pakistan, Bangladesh, and Uzbekistan - concentrated in the South and East Asia regions.";
+      descriptionOne.textContent = "Forced labor exists in every country, but according to some estimates, more than half of the world’s forced laborers are located in just five countries - India, China, Pakistan, Bangladesh, and Uzbekistan - concentrated in the Central, South, and Southeast regions of Asia.";
       descriptionTwo.setAttribute("class", "animated fadeIn chapterDescriptionTwo");
-      descriptionTwo.textContent = "The International Labour Organization (ILO) estimates that there are at least 20.9 million people in forced labor worldwide.";
+      descriptionTwo.textContent = "The International Labour Organization (ILO) estimates that there are at least 20.9 million people in conditions of forced labor worldwide.";
       // Show the gradient bar
       document.getElementById("colorsGradient").style.display = 'block';
       document.getElementById("colorsGradient").setAttribute("class", "animated fadeIn");
@@ -303,11 +335,12 @@ function changeChapter(){
     // Highlight 50 selected countries
     for(var key in forcedLaborData){
       // Normalize the Values
-      var minValue = 0.000775;
-      var maxValue = 0.188969;
-      var normalizeValue =  (forcedLaborData[key].per_capita_index-minValue)/(maxValue-minValue);
-      var colorLabor = Math.floor(map_range(normalizeValue,0, 0.22823788218540444, 1, 8));
-      var opacityLabor = map_range(normalizeValue,0, 0.22823788218540444, 0.1, 0.85);
+      var minValue = -4.761904762;
+      var maxValue = 31.86507937;
+      var normalizeValue =  (forcedLaborData[key].slavery_index - minValue)/(maxValue-minValue);
+      console.log(normalizeValue);
+      var colorLabor = Math.floor(map_range(normalizeValue,0, 1, 1, 8));
+      var opacityLabor = map_range(normalizeValue,0, 1, 0.1, 0.85);
       if(opacityLabor >= 1){
         opacityLabor = 1;
       }
@@ -358,7 +391,7 @@ function changeChapter(){
     // Fly to Map
     map.flyTo({
         center: locations.worldTiltRight,
-        zoom : 2,
+        zoom : 2.1,
         speed: 0.06,
         curve: 2,
         bearing: 0,
@@ -527,9 +560,6 @@ function changeChapter(){
       animateUsaOne();
     },200);
 
-    // Fade out the First animation
-    //setTimeout(function(){usaDescription.setAttribute("class", "animated fadeOut usaDescription");},12000);
-
     // Show the Second Description
     setTimeout(function(){
       textUsaDescription.innerHTML = "The US government makes the majority of its purchases from only 100 contractors.";
@@ -538,9 +568,6 @@ function changeChapter(){
       map.setLayoutProperty("topHundred", "visibility", "visible");
       animateUsaTwo();
     },11000);
-
-    // Fade out the Second animation
-    //setTimeout(function(){usaDescription.setAttribute("class", "animated fadeOut textUsaDescription");},25000);
 
     // Show the Third Description
     setTimeout(function(){
@@ -652,7 +679,7 @@ function changeChapter(){
       title.setAttribute("class", "animated fadeIn chapterName");
       title.textContent = "Chapter Four: U.S. Military Bases Around the World";
       descriptionOne.setAttribute("class", "animated fadeIn chapterDescriptionOne");
-      descriptionOne.textContent = "That means that the U.S. spends around US $200 billion each year on services from military contractors alone.";
+      descriptionOne.textContent = "That means that the U.S. Spends around US $200 each year on military-related services.";
       descriptionTwo.setAttribute("class", "animated fadeIn chapterDescriptionTwo");
       descriptionTwo.textContent = "The U.S. Defense Department had contractual obligations in Iraq and Afghanistan totaling $160 billion from 2007 to 2012, more than any other federal agency.";
       // Show the bases key
@@ -726,34 +753,34 @@ function changeChapter(){
      });
 
      //popup displays country & number of maps
-     map.on('mousemove', function(e) {
-       var features = map.queryRenderedFeatures(e.point, { layers: ['basecamp-circles'] });
-       // Change the cursor style as a UI indicator.
-       map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
-
-       if (!features.length) {
-           popup.remove();
-           return;
-       }
-
-       var feature = features[0];
-       // Populate the popup and set its coordinates
-       // based on the feature found.
-
-       var prop = feature.properties;
-       var popupstring = prop.name;
-       if( prop.total > 0){
-         popupstring += "<br> <b> Military Base </b> : " + prop.total;
-       }
-
-       if(prop.unconfirmed > 0){
-         popupstring += "<br> <b> Unconfirmed military bases </b> "
-       }
-
-       popup.setLngLat(feature.geometry.coordinates)
-           .setHTML(popupstring)
-           .addTo(map);
-     });
+    //  map.on('mousemove', function(e) {
+    //    var features = map.queryRenderedFeatures(e.point, { layers: ['basecamp-circles'] });
+    //    // Change the cursor style as a UI indicator.
+    //    map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+     //
+    //    if (!features.length) {
+    //        popup.remove();
+    //        return;
+    //    }
+     //
+    //    var feature = features[0];
+    //    // Populate the popup and set its coordinates
+    //    // based on the feature found.
+     //
+    //    var prop = feature.properties;
+    //    var popupstring = prop.name;
+    //    if( prop.total > 0){
+    //      popupstring += "<br> <b> Military Base </b> : " + prop.total;
+    //    }
+     //
+    //    if(prop.unconfirmed > 0){
+    //      popupstring += "<br> <b> Unconfirmed military bases </b> "
+    //    }
+     //
+    //    popup.setLngLat(feature.geometry.coordinates)
+    //        .setHTML(popupstring)
+    //        .addTo(map);
+    //  });
 
     // Fly to Map
     map.flyTo({
@@ -867,9 +894,9 @@ function changeChapter(){
       title.setAttribute("class", "animated fadeIn");
       title.textContent = "Chapter Six: What Can the Government Do, Anyway?";
       descriptionOne.setAttribute("class", "animated fadeIn");
-      descriptionOne.textContent = "Since some materials for weapons are sourced abroad, and more than 70,000 foreign nationals are employed on U.S. military bases, it is unlikely that U.S. military purchases have never involved forced labor. Nontheless, according to the government’s own data, not a single contractor -- defense or other -- has been terminated due to concerns over forced labor.";
+      descriptionOne.textContent = "Since some materials for weapons are sourced abroad, and more than 70,000 foreign nationals are employed on U.S. military bases, it is unlikely that U.S. military purchases have never involved forced labor. Nonetheless, the data the government provides to the public does not list any restrictions for violations of rules related to forced labor or human trafficking. This either means that the government is not regularly implementing it's own rules, or that it is not providing public and transparent information on when it does.";
       descriptionTwo.setAttribute("class", "animated fadeIn");
-      descriptionTwo.textContent = "The U.S. government can use its purchasing power to promote positive labor standards around the world. While it cannot oversee all aspects of supply chains related to its purchases, it can give teeth to some of the FAR’s stronger rules by implementing them more regularly. This would send a message to suppliers around the world that if they want to have the world’s biggest purchaser as a customer, they need to shape up.";
+      descriptionTwo.textContent = "The U.S. government can use its purchasing power to promote positive labor standards around the world. While it cannot oversee all aspects of supply chains related to its purchases, it can give teeth to some of the FAR’s stronger rules by implementing them more regularly, and by reporting on that implementation in its relevant public databases. This would send a message to suppliers around the world that if they want to have the world’s biggest purchaser as a customer, they need to shape up.";
       descriptionThree.style.display = 'none';
     }, 2000);
 

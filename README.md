@@ -1,9 +1,10 @@
 # Missed Opportunity
 
-<del>Unintended Consequences</del>
 Missed Opportunity
 
 A data driven storytelling about the U.S. Government Purchases and Forced Labor Abroad.
+
+![importaciones](https://cloud.githubusercontent.com/assets/10605821/22319690/0ff5b0ee-e353-11e6-95b2-912a67f9699a.jpg)
 
 In collaboration with the [Stern Center for Business and Human Rights.](http://bhr.stern.nyu.edu/)
 
@@ -12,11 +13,6 @@ In collaboration with the [Stern Center for Business and Human Rights.](http://b
 
 [Missed Opportunity?](http://missedopportunity.3laab.com/)
 
-## Install
-
-```javascript
-bower install
-```
 
 ## Data
 

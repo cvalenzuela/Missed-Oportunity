@@ -127,7 +127,7 @@ if (!mapboxgl.supported()) {
       center: locations.waterZoom,
       zoom: 7.58,
       hash: true,
-      interactive: false,
+      interactive: true,
       attributionControl: true,
       scrollZoom :true
   });
@@ -338,8 +338,7 @@ function changeChapter(){
       var minValue = -4.761904762;
       var maxValue = 31.86507937;
       var normalizeValue =  (forcedLaborData[key].slavery_index - minValue)/(maxValue-minValue);
-      console.log(normalizeValue);
-      var colorLabor = Math.floor(map_range(normalizeValue,0, 1, 1, 8));
+      var colorLabor = Math.floor(map_range(normalizeValue,0, 1.2, 0, 8));
       var opacityLabor = map_range(normalizeValue,0, 1, 0.1, 0.85);
       if(opacityLabor >= 1){
         opacityLabor = 1;

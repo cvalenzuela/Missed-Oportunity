@@ -3,11 +3,8 @@
 Main File for the Visualization
 
 */
-var currentChapter = 1;
-var title = document.getElementById('chapterName');
-var descriptionOne = document.getElementById('chapterDescriptionOne');
-var descriptionTwo = document.getElementById('chapterDescriptionTwo');
-var descriptionThree = document.getElementById('chapterDescriptionThree');
+
+
 var colors = ['#fff7ec','#fee8c8','#fdd49e','#fdbb84','#fc8d59','#ef6548','#d7301f','#b30000','#7f0000']
 var colorsUSA = ['#453B52','#41607A','#288993','#30B097','#73D487','#CAF270'];
 var baseCountries = ["Bahrain", "United Arab Emirates", "Qatar", "Saudi Arabia"];
@@ -18,10 +15,7 @@ var labelUsaDescription = document.getElementById("labelUsaDescription");
 var labelUsaDescriptionTwo = document.getElementById("labelUsaDescription2");
 var labelUsaDescriptionThree = document.getElementById("labelUsaDescription3");
 var credits = document.getElementById("credits");
-var next = document.getElementById("next");
-var previous = document.getElementById("previous");
-var nextasText = document.getElementById("nextAsText");
-var previousasText = document.getElementById("previousAsText");
+
 var d3div = document.getElementById("d3");
 var textDiv = document.getElementById("text-div");
 var soundIcon = document.getElementById("soundIcon");
@@ -33,39 +27,24 @@ var opacityUsa = 0;
 var opacityUsaTwo = 0;
 var opacityUsaThree = 0;
 var id = 1;
-next.style.cursor = "pointer";
-previous.style.cursor = "pointer";
-nextAsText.style.cursor = "pointer";
-previousAsText.style.cursor = "pointer";
-
-// Locations
-var locations = {
-  us: [-113.53, 51.24],
-  gulfAndAsia: [ 52.61, 24.08],
-  gulfAndAsiaPlain: [ 50.62, 31.14],
-  gulf: [40.101, 25.744],
-  world: [-25.3, 24.4],
-  worldTiltRight : [14.18,18.08],
-  waterZoom : [88.307, 20.099]
-};
 
 // Show everything once all data is loaded
-Pace.on('done', function() {
-    if(document.documentElement.clientWidth < 930){
-      document.getElementById("unsupported").style.display = "block";
-      document.getElementById("content").style.display = "none";
-    }
-    else{
-      document.getElementById("content").style.display = "block";
-      document.getElementById("unsupported").style.display = "none";
-    }
- });
+// Pace.on('done', function() {
+//     if(document.documentElement.clientWidth < 930){
+//       document.getElementById("unsupported").style.display = "block";
+//       document.getElementById("content").style.display = "none";
+//     }
+//     else{
+//       document.getElementById("content").style.display = "block";
+//       document.getElementById("unsupported").style.display = "none";
+//     }
+//  });
 
 /* Slavery Index Data */
 function loadJSONSlaveIndex(callback) {
   var xobj = new XMLHttpRequest();
   xobj.overrideMimeType("application/json");
-  xobj.open('GET', 'assets/data/slaveryIndex.json', true);
+  xobj.open('GET', 'assets/data/forcelaborpercapita.json', true);
   xobj.onreadystatechange = function () {
     if (xobj.readyState == 4 && xobj.status == "200") {
     // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
@@ -101,59 +80,21 @@ loadJSONMilitaryCamps(function(response){
 /* Military Base Camps */
 
 // Change the Sound Icon
-function soundOnOff(){
-  console.log("here")
-    if (soundIcon.alt == "soundOn"){
-      soundIcon.alt = "soundOff";
-      soundIcon.src = "./assets/imgs/sound_off.png"
-      sound.pause();
-    }
-    else if (soundIcon.alt == "soundOff"){
-      soundIcon.alt= "soundOn";
-      soundIcon.src = "./assets/imgs/sound_on.png"
-      sound.play();
-    }
-}
+// function soundOnOff(){
+//   console.log("here")
+//     if (soundIcon.alt == "soundOn"){
+//       soundIcon.alt = "soundOff";
+//       soundIcon.src = "./assets/imgs/sound_off.png"
+//       sound.pause();
+//     }
+//     else if (soundIcon.alt == "soundOff"){
+//       soundIcon.alt= "soundOn";
+//       soundIcon.src = "./assets/imgs/sound_on.png"
+//       sound.play();
+//     }
+// }
 
-/* Access to Mapbox gl */
-mapboxgl.accessToken = 'pk.eyJ1IjoiY3ZhbGVuenVlbGEiLCJhIjoiY2l2ZzkweTQ3MDFuODJ5cDM2NmRnaG4wdyJ9.P_0JJXX6sD1oX2D0RQeWFA';
-if (!mapboxgl.supported()) {
-    alert('Sorry, but your browser cannot not support this visualization.');
-} else{
-  var map = new mapboxgl.Map({
-      container: 'map',
-      style: './stylemap/style.json',
-      container: 'map',
-      center: locations.waterZoom,
-      zoom: 7.58,
-      hash: true,
-      interactive: true,
-      attributionControl: true,
-      scrollZoom :true
-  });
-}
-/* When the map is loaded */
-map.on('load', function(){
-  // Nothing for now
-});
 
-/* Progress Line */
-var bar = new ProgressBar.Line(progressBar, {
-  strokeWidth: 4,
-  easing: 'easeInOut',
-  duration: 1400,
-  color: '#FFEA82',
-  trailColor: '#eee',
-  trailWidth: 1,
-  svgStyle: {width: '100%', height: '100%'},
-  from: {color: '#293896'},
-  to: {color: '#ff4e47'},
-  step: (state, bar) => {
-    bar.path.setAttribute('stroke', state.color);
-  }
-});
-// Start with a little animation
-bar.animate(0.01);
 
 /* Show or Hide layers */
 function showOrHide(type, arrayOfCountries){
@@ -161,30 +102,6 @@ function showOrHide(type, arrayOfCountries){
     map.setLayoutProperty(arrayOfCountries[i], 'visibility', type);
   }
 }
-
-/* Listen to the Navegations Controlls and Change the Current Chapter*/
-// Next
-document.getElementById('next').addEventListener('click', function () {
-  if(currentChapter < 9 ){
-    currentChapter += 1;
-    console.log("Current chapter is: " + currentChapter);
-    changeChapter();
-    if(currentChapter < 1){
-      currentChapter = 1;
-    }
-  }
-});
-// Previous
-document.getElementById('previous').addEventListener('click', function () {
-  if(currentChapter > 0){
-    currentChapter -= 1;
-    console.log("Current chapter is: " + currentChapter);
-    changeChapter();
-    if(currentChapter > 9){
-      currentChapter = 9;
-    }
-  }
-});
 
 // Map Function
 function map_range(value, low1, high1, low2, high2) {
@@ -202,22 +119,6 @@ function changeChapter(){
 
   if(currentChapter == 1){
 
-    // Change the content text
-    title.textContent = "Chapter One: Forced Labor";
-    descriptionOne.textContent = "Forced labor occurs when people are coerced to work through violence, intimidation, and in more subtle ways.";
-    descriptionTwo.textContent = "Many workers are forced to stay in their jobs so they can pay off hefty recruitment fees. Some migrant workers have their identity papers confiscated by their employer, or are threatened with deportation if they attempt to assert their rights.";
-
-    // Bar
-    bar.animate(0.01);
-
-    // Fly to Map
-    map.flyTo({
-        center: locations.waterZoom,
-        zoom : 7.58,
-        speed: 0.2,
-        curve: 1
-    });
-
     //In case of going backwards, remove Layers from previous chapter
     if(document.getElementById("text-div") != null){
       document.getElementById("text-div").style.display = 'none';
@@ -225,9 +126,6 @@ function changeChapter(){
       clearAnimation();
     }
 
-    // Opacity of navegation
-    next.style.opacity = '1';
-    nextAsText.style.opacity = '1';
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -238,21 +136,6 @@ function changeChapter(){
 
   else if(currentChapter == 2){
 
-    // Change the content text
-    title.textContent = "Chapter One: Forced Labor";
-    descriptionOne.textContent = "Forced labor occurs when people are coerced to work through violence, intimidation, and in more subtle ways. ";
-    descriptionTwo.textContent = "Many workers are forced to stay in their jobs so they can pay off hefty recruitment fees. Some migrant workers have their identity papers confiscated by their employer, or are threatened with deportation if they attempt to assert their rights.";
-
-    // Opacity of navegation
-    setTimeout(function(){
-      next.style.opacity = '0.04';
-      nextAsText.style.opacity = '0.04';
-    },400)
-    setTimeout(function(){
-      next.style.opacity = '1';
-      nextAsText.style.opacity = '1';
-    },38000)
-
     // Animation Start
     if(document.getElementById("text-div") != null){
       document.getElementById("text-div").style.display = 'block';
@@ -260,17 +143,6 @@ function changeChapter(){
     }
     clearAnimation();
     beginAnimation();
-
-    // Bar
-    bar.animate(0.2);
-
-    // Fly to Map
-    map.flyTo({
-        center: locations.waterZoom,
-        zoom : 7.58,
-        speed: 0.2,
-        curve: 1
-    });
 
     //In case of going backwards, remove Layers from previous chapter
     if(map.getLayer('Democratic Republic of the Congo') != undefined){
@@ -291,16 +163,6 @@ function changeChapter(){
 
   else if(currentChapter == 3){
 
-    // Opacity of next
-    setTimeout(function(){
-      next.style.opacity = '0.04';
-      nextAsText.style.opacity = '0.04';
-    },400)
-    setTimeout(function(){
-      next.style.opacity = '1';
-      nextAsText.style.opacity = '1';
-    },19000)
-
     // Hide the previous D3 animation
     if(document.getElementById("text-div") != null){
       document.getElementById("text-div").setAttribute("class", "animated fadeOut");
@@ -310,23 +172,11 @@ function changeChapter(){
     }
 
     // Change the content text
-    title.setAttribute("class", "animated fadeOut chapterNameOff");
-    descriptionOne.setAttribute("class", "animated fadeOut chapterDescriptionOneOff");
-    descriptionTwo.setAttribute("class", "animated fadeOut chapterDescriptionTwoOff");
     setTimeout(function(){
-      title.setAttribute("class", "animated fadeIn chapterName");
-      title.textContent = "Chapter Two: Forced Labor Around the World";
-      descriptionOne.setAttribute("class", "animated fadeIn chapterDescriptionOne");
-      descriptionOne.textContent = "Forced labor exists in every country, but according to some estimates, more than half of the world’s forced laborers are located in just five countries - India, China, Pakistan, Bangladesh, and Uzbekistan - concentrated in the Central, South, and Southeast regions of Asia.";
-      descriptionTwo.setAttribute("class", "animated fadeIn chapterDescriptionTwo");
-      descriptionTwo.textContent = "The International Labour Organization (ILO) estimates that there are at least 20.9 million people in conditions of forced labor worldwide.";
       // Show the gradient bar
       document.getElementById("colorsGradient").style.display = 'block';
       document.getElementById("colorsGradient").setAttribute("class", "animated fadeIn");
     }, 2000);
-
-    // Bar
-    bar.animate(0.34);
 
     // Opacity of Water and Satellite
     map.setPaintProperty("satellite", 'raster-opacity', 0.25);
@@ -335,11 +185,15 @@ function changeChapter(){
     // Highlight 50 selected countries
     for(var key in forcedLaborData){
       // Normalize the Values
-      var minValue = -4.761904762;
-      var maxValue = 31.86507937;
-      var normalizeValue =  (forcedLaborData[key].slavery_index - minValue)/(maxValue-minValue);
-      var colorLabor = Math.floor(map_range(normalizeValue,0, 1.2, 0, 8));
-      var opacityLabor = map_range(normalizeValue,0, 1, 0.1, 0.85);
+      var minValue = 0.000775; // for slavery index use:  -4.761904762
+      var maxValue = 0.188969; //  for slavery index use: 0.188969 31.86507937
+      var normalizeValue =  (forcedLaborData[key].per_capita_index - minValue)/(maxValue-minValue);
+      // Using slavery index data
+      // var colorLabor = Math.floor(map_range(normalizeValue,0, 1.2, 0, 8));
+      // var opacityLabor = map_range(normalizeValue,0, 1, 0.1, 0.85);
+      var colorLabor = Math.floor(map_range(normalizeValue,0, 0.06, 2, 8));
+      var opacityLabor = map_range(normalizeValue,0, 0.4, 0.4, 0.95);
+      console.log(key + " "  + colorLabor);
       if(opacityLabor >= 1){
         opacityLabor = 1;
       }
@@ -387,16 +241,6 @@ function changeChapter(){
         });
     }
 
-    // Fly to Map
-    map.flyTo({
-        center: locations.worldTiltRight,
-        zoom : 2.1,
-        speed: 0.06,
-        curve: 2,
-        bearing: 0,
-        pitch: 0
-    });
-
     // Hide the USA
     usaDescription.style.display = 'none';
     descriptionThree.style.display = 'none';
@@ -415,34 +259,9 @@ function changeChapter(){
 
   else if(currentChapter == 4){
 
-    // opacity of next
-    setTimeout(function(){
-      next.style.opacity = '0.01';
-      nextAsText.style.opacity = '0.01';
-    },400)
-    setTimeout(function(){
-      next.style.opacity = '1';
-      nextAsText.style.opacity = '1';
-    },10000)
-
-    title.setAttribute("class", "animated fadeOut chapterNameOff");
-    descriptionOne.setAttribute("class", "animated fadeOut chapterDescriptionOneOff");
-    descriptionTwo.setAttribute("class", "animated fadeOut chapterDescriptionTwoOff");
     // Hide the gradient bar
     document.getElementById("colorsGradient").setAttribute("class", "animated fadeOut");
     document.getElementById("colorsGradient").style.display = 'none';
-
-    // Change the content text
-    setTimeout(function(){
-      title.setAttribute("class", "animated fadeIn chapterName");
-      title.textContent = "Chapter Three: The Role of the U.S. Government";
-      descriptionOne.setAttribute("class", "animated fadeIn chapterDescriptionOne");
-      descriptionOne.textContent = "The U.S. federal government is the largest single purchaser in the global economy, with annual procurement spending that totals between US $450 and $500 billion. Many of the products it procures are produced using global supply chains, by laborers in foreign countries.";
-      descriptionTwo.setAttribute("class", "animated fadeIn chapterDescriptionTwo");
-      descriptionTwo.textContent = "Given this amount of purchases, it is inevitable that concerns over human rights abuses, including forced labor, will arise in some of these supply chains.";
-      descriptionThree.style.display = 'block';
-      descriptionThree.textContent = "Defense-related spending constitutes the single largest type of procurement for the U.S. government.";
-    }, 1000);
 
     //Remove Previous Layers
     for(var key in forcedLaborData){
@@ -450,23 +269,10 @@ function changeChapter(){
       map.setPaintProperty("Name"+key,'text-opacity',0);
     }
 
-    // Bar
-    bar.animate(0.4);
-
     // Layouts
     map.setPaintProperty("satellite", 'raster-opacity', 0.1);
     map.setPaintProperty("water", 'fill-opacity', 0.1);
     map.setPaintProperty("admin-2-boundaries", 'line-opacity', 0.1);
-
-    // Fly to Map
-    map.flyTo({
-        center: locations.us,
-        zoom : 2.79,
-        speed: 0.06,
-        curve: 1,
-        bearing: 1,
-        pitch: 80
-    });
 
   }
 
@@ -478,32 +284,10 @@ function changeChapter(){
 
   else if (currentChapter == 5){
 
-    // Change the content text
-    setTimeout(function(){
-      title.setAttribute("class", "animated fadeIn chapterName");
-      title.textContent = "Chapter Three: The Role of the U.S. Government";
-      descriptionOne.setAttribute("class", "animated fadeIn chapterDescriptionOne");
-      descriptionOne.textContent = "The U.S. federal government is the largest single purchaser in the global economy, with annual procurement spending that totals between US $450 and $500 billion. Many of the products it procures are produced using global supply chains, by laborers in foreign countries.";
-      descriptionTwo.setAttribute("class", "animated fadeIn chapterDescriptionTwo");
-      descriptionTwo.textContent = "Given this amount of purchases, it is inevitable that concerns over human rights abuses, including forced labor, will arise in some of these supply chains.";
-      descriptionThree.style.display = 'block';
-      descriptionThree.textContent = "Defense-related spending constitutes the single largest type of procurement for the U.S. government.";
-    }, 1000);
-
     // Layouts
     map.setPaintProperty("satellite", 'raster-opacity', 0.2);
     map.setPaintProperty("water", 'fill-opacity', 0.2);
     map.setPaintProperty("admin-2-boundaries", 'line-opacity', 0.2);
-
-    // opacity of next
-    setTimeout(function(){
-      next.style.opacity = '0.01';
-      nextAsText.style.opacity = '0.01';
-    },400)
-    setTimeout(function(){
-      next.style.opacity = '1';
-      nextAsText.style.opacity = '1';
-    },31000)
 
     // Show the First Description
     setTimeout(function(){
@@ -625,16 +409,6 @@ function changeChapter(){
       }
     }
 
-    // Fly to Map
-    map.flyTo({
-        center: locations.us,
-        zoom : 2.79,
-        speed: 0.06,
-        curve: 1,
-        bearing: 1,
-        pitch: 80
-    });
-
     // In case of going backwards
     if(map.getLayer("basecamp-circles") != undefined){
       map.setPaintProperty("basecamp-circles", "circle-opacity", 0);
@@ -650,16 +424,6 @@ function changeChapter(){
 
   else if(currentChapter == 6){
 
-    // opacity of next
-    setTimeout(function(){
-      next.style.opacity = '0.02';
-      nextAsText.style.opacity = '0.02';
-    },400)
-    setTimeout(function(){
-      next.style.opacity = '1';
-      nextAsText.style.opacity = '1';
-    },14000)
-
     // Hide the previuos text
     usaDescription.setAttribute("class", "animated fadeOut");
     title.setAttribute("class", "animated fadeOut chapterNameOff");
@@ -674,13 +438,6 @@ function changeChapter(){
 
     // Change the content text
     setTimeout(function(){
-      // Change the content text
-      title.setAttribute("class", "animated fadeIn chapterName");
-      title.textContent = "Chapter Four: U.S. Military Bases Around the World";
-      descriptionOne.setAttribute("class", "animated fadeIn chapterDescriptionOne");
-      descriptionOne.textContent = "That means that the U.S. Spends around US $200 each year on military-related services.";
-      descriptionTwo.setAttribute("class", "animated fadeIn chapterDescriptionTwo");
-      descriptionTwo.textContent = "The U.S. Defense Department had contractual obligations in Iraq and Afghanistan totaling $160 billion from 2007 to 2012, more than any other federal agency.";
       // Show the bases key
       document.getElementById("militaryBasesKey").style.display = 'block';
       document.getElementById("militaryBasesKey").setAttribute("class", "animated fadeIn chapterName");
@@ -693,9 +450,6 @@ function changeChapter(){
     map.setPaintProperty("satellite", 'raster-opacity', 0.3);
     map.setPaintProperty("water", 'fill-opacity', 0.4);
     map.setPaintProperty("admin-2-boundaries", 'line-opacity', 0.6);
-
-    // Bar
-    bar.animate(0.6);
 
     // Show Previous Layers
     for(var key in forcedLaborData){
@@ -781,16 +535,6 @@ function changeChapter(){
     //        .addTo(map);
     //  });
 
-    // Fly to Map
-    map.flyTo({
-        center: locations.worldTiltRight,
-        zoom : 2.09,
-        speed: 0.06,
-        curve: 1,
-        bearing: 0,
-        pitch: 0
-    });
-
     // In case of going backwards
     document.getElementById("d3-2").style.display = 'none';
 
@@ -851,8 +595,6 @@ function changeChapter(){
     map.setPaintProperty("water", 'fill-opacity', 0.0);
     map.setPaintProperty("admin-2-boundaries", 'line-opacity', 0);
 
-    // Bar
-    bar.animate(0.8);
 
     // Show Graph
     setTimeout(function(){

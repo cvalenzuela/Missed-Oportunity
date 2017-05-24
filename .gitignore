@@ -2,4 +2,4 @@ bower_components
 storyboard
 raw-data
 .DS_Store
-
+node_modules

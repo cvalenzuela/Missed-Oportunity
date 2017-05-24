@@ -109,7 +109,7 @@ p{
   padding: 30px;
   max-width: 500px;
   height: 100%;
-  width: 30%;
+  width: 27em;
   padding-top: 2%;
   z-index: 99;
 }
@@ -144,7 +144,7 @@ p{
 }
 
 #chapters{
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 #chapters h4{
@@ -166,6 +166,29 @@ p{
   font-size: .8em;
 }
 
+#next, #previous{
+  cursor: pointer;
+}
+
+#chapterDescription{
+  overflow-y: scroll;
+  max-height: 360px;
+}
+
+#chapterDescription::-webkit-scrollbar {
+  width: 0.6em;
+  padding: 30px;
+}
+
+#chapterDescription::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}
+
+#chapterDescription::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
 svg {
   position: absolute;
   width: 100%;
@@ -177,22 +200,22 @@ svg {
   height: 20px;
   background: -webkit-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
   background: #fff7ec; /* For browsers that do not support gradients */
-   /* For Safari 5.1 to 6.0 */
-   background: -webkit-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
-   /* For Opera 11.1 to 12.0 */
-   background: -o-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
-   /* For Fx 3.6 to 15 */
-   background: -moz-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
-   /* Standard syntax */
-   background: linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
+  /* For Safari 5.1 to 6.0 */
+  background: -webkit-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
+  /* For Opera 11.1 to 12.0 */
+  background: -o-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
+  /* For Fx 3.6 to 15 */
+  background: -moz-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
+  /* Standard syntax */
+  background: linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
 }
 
 #text-div{
+  position: absolute;
   width: 66%;
   text-align: center;
   -webkit-animation-duration: 4s;
   animation-duration: 4s;
-  position: absolute;
   color: #ffffff;
   z-index: 100;
   font-size: 1.3em;
@@ -410,7 +433,7 @@ div.tooltip {
 
 #d3-2{
   display: none;
- }
+}
 
 .moveInfinite{
   animation-iteration-count: infinite;
@@ -470,7 +493,7 @@ div.tooltip {
 }
 
 :focus {
-    outline: none;
+  outline: none;
 }
 
 #unsupported{
@@ -529,4 +552,10 @@ div.tooltip {
   top: 0;
   left: 0;
   max-width: 100%;
+}
+
+#d3{
+  /*position: absolute;
+  top: 10%;
+  left: 30%;*/
 }

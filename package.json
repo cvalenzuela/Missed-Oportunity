@@ -1,0 +1,31 @@
+{
+  "name": "unintentedconsequences",
+  "version": "2.0.0",
+  "description": "A Visualization on U.S. Government Purchases and Forced Labor Abroad",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvalenzuela/unintendedconsequences.git"
+  },
+  "author": "Cristobal Valenzuela <cvalenzuela@nyu.edu> (https://github.com/cvalenzuela)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cvalenzuela/unintendedconsequences/issues"
+  },
+  "homepage": "https://github.com/cvalenzuela/unintendedconsequences#readme",
+  "devDependencies": {
+    "babel-core": "6.24.1",
+    "babel-loader": "7.0.0",
+    "babel-preset-env": "1.5.1",
+    "babel-preset-es2015": "6.24.1"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "es2015"
+    ]
+  }
+}

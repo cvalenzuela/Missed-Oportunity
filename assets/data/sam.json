@@ -1,32 +1,47 @@
-{
-	"name": "sam.gov",
-	"children" : [
-		{
-			"name": "Restriction Related to Medicare and Healthcare Fraud", "size" : 12825, "color": 3
-		},
-		{
-			"name": "Violation of the Clean Air Act", "size" : 113, "color": 11
-		},
-		{
-			"name": "Violation of the Clean Water Act", "size": 69, "color": 14
-		},
-		{
-			"name": "Food Stamp Fraud", "size": 2604, "color": 15
-		},
-		{
-			"name": "Others", "size": 1112, "color": 16
-		},
-		{
-			"name": "Violation of the Davis-Bacon Act", "size": 18, "color": 17
-		},
-		{
-			"name": "Contracting With the Enemy", "size": 24, "color": 18
-		},
-		{
-			"name": "Outstanding Debt to the Government", "size": 18, "color": 19
-		},
-		{
-			"name": "Convictions Related to Department Of Agriculture Violation", "size": 84, "color": 2
-		}
-	]
-}
+[
+	{
+	"name": "Restriction Related to Medicare and Healthcare Fraud",
+	"size" : 12825,
+	"color": 3
+	},
+	{
+	"name": "Violation of the Clean Air Act",
+	"size" : 113,
+	"color": 11
+	},
+	{
+	"name": "Violation of the Clean Water Act",
+	"size": 69,
+	"color": 14
+	},
+	{
+	"name": "Food Stamp Fraud",
+	"size": 2604,
+	"color": 15
+	},
+	{
+	"name": "Others",
+	"size": 1112,
+	"color": 16
+	},
+	{
+	"name": "Violation of the Davis-Bacon Act",
+	"size": 18,
+	"color": 17
+	},
+	{
+	"name": "Contracting With the Enemy",
+	"size": 24,
+	"color": 18
+	},
+	{
+	"name": "Outstanding Debt to the Government",
+	"size": 18,
+	"color": 19
+	},
+	{
+	"name": "Convictions Related to Department Of Agriculture Violation",
+	"size": 84,
+	"color": 2
+	}
+]

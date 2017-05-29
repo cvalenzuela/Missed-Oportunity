@@ -14,7 +14,7 @@
     "bearing": 0,
     "pitch": 0,
     "transition": {
-      "duration": 8000,
+      "duration": 4000,
       "delay": 0
     },
     "sources": {
@@ -88,6 +88,51 @@
              "fill-extrusion-opacity": 0.4,
              "fill-extrusion-color": "rgba(0, 255, 0, 0.4)"
            }
+        },
+        {
+          "id": "totalAmount",
+          "type": "fill-extrusion",
+          "source": "usacontinent",
+          "source-layer": "USA",
+          "layout": {
+              "visibility": "visible"
+          },
+          "paint": {
+              "fill-extrusion-base": 0,
+              "fill-extrusion-opacity": 0,
+              "fill-extrusion-color": "#41607A",
+              "fill-extrusion-height": 0
+          }
+        },
+        {
+          "id": "topHundred",
+          "type": "fill-extrusion",
+          "source": "usacontinent",
+          "source-layer": "USA",
+          "layout": {
+              "visibility": "visible"
+          },
+          "paint": {
+              "fill-extrusion-base": 0,
+              "fill-extrusion-opacity": 0,
+              "fill-extrusion-color": "#73D487",
+              "fill-extrusion-height": 0
+          }
+        },
+        {
+          "id": "defense",
+          "type": "fill-extrusion",
+          "source": "usacontinent",
+          "source-layer": "USA",
+          "layout": {
+              "visibility": "visible"
+          },
+          "paint": {
+              "fill-extrusion-base": 0,
+              "fill-extrusion-opacity": 0,
+              "fill-extrusion-color": "#453B52",
+              "fill-extrusion-height": 0
+          }
         },
         {
             "id": "admin-2-boundaries",

@@ -114,27 +114,15 @@ function sumBySize(d) {
 
 
 // //text animation
-var d3div2 = document.getElementById('d3-2');
-var textDiv3 = document.createElement("div");
-var textDiv4 = document.createElement("div");
-d3div2.appendChild(textDiv3);
-d3div2.appendChild(textDiv4);
-
-textDiv3.id = "text-div-3";
-textDiv4.id = "text-div-4";
-
-function textAnimation(){
-	textDiv3.style.left = "33%";
-	textDiv3.style.top = "9%";
-	textDiv3.innerHTML = "Since August 1, 2007, at least 25,051 individuals and firms have been restricted from obtaining US government contracts. The following table is a breakdown of the types of violations leading to restrictions, when that information is publicly available."
-	textDiv3.classList.add("animated");
-	textDiv3.classList.add("fadeIn");
-
-  // textDiv4.style.left = "33%";
-  // textDiv4.style.top = "85%";
-  // textDiv4.innerHTML = "NONE have been excluded from US government contracts due to human trafficking or forced labor."
-  // textDiv4.classList.add("animated");
-  // textDiv4.classList.add("fadeIn");
-}
-
-setTimeout(textAnimation, 3000);
+// var d3div2 = document.getElementById('d3-2');
+// var textDiv3 = document.createElement("div");
+// var textDiv4 = document.createElement("div");
+// d3div2.appendChild(textDiv3);
+// d3div2.appendChild(textDiv4);
+//
+// textDiv3.id = "text-div-3";
+// textDiv4.id = "text-div-4";
+//
+//
+//
+// setTimeout(textAnimation, 3000);

@@ -11,23 +11,8 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-#home{
-  width: 100%;
-  height: 100%;
-  background: -webkit-linear-gradient(top left, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('../imgs/home@unauthorize.jpg') center center / cover;
-  background: -o-linear-gradient(top left, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('../imgs/home@unauthorize.jpg') center center / cover;
-  background: linear-gradient(to bottom right, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('../imgs/home@unauthorize.jpg') center center / cover;
-}
-
 h1,h2,h3,h4,h5,h6,p{
   color:#d9d9d9;
-}
-
-#soundIcon{
-  position: absolute;
-  bottom: 3.5%;
-  right: 0.7%;
-  opacity: 0.5;
 }
 
 h1{
@@ -38,6 +23,10 @@ h1{
 h3{
   font-size: 1.2em;
   font-family: 'Lora', serif;
+}
+
+p{
+  font-size: 1.2em;
 }
 
 .seemore{
@@ -57,11 +46,6 @@ h3{
   color: rgba(0, 47, 75, 0.50);
 }
 
-p{
-  font-size: 1.2em;
-}
-
-
 .title {
   margin-top: 16em;
 }
@@ -73,7 +57,6 @@ p{
   border: 1px solid white;
 }
 
-
 .logo-nyu {
   position: absolute;
   bottom: 0.5%;
@@ -84,21 +67,12 @@ p{
   max-width: 150px;
 }
 
-
 .copyright {
   margin: 10px;
 }
 
 .copyright p{
   font-size: 0.7em;
-}
-
-#map {
-  position: absolute;
-  top:0;
-  left: 0;
-  width:100%;
-  height: 100%;
 }
 
 .description{
@@ -111,7 +85,7 @@ p{
   height: 100%;
   width: 27em;
   padding-top: 2%;
-  z-index: 99;
+  z-index: 999;
 }
 
 .description h4{
@@ -134,68 +108,6 @@ p{
   font-size: 1em;
 }
 
-
-#progressBar{
-  width: 100%;
-  height: 2px;
-  position: absolute;
-  left: -48%;
-  top: 15px;
-}
-
-#chapters{
-  margin-top: 50px;
-}
-
-#chapters h4{
-  display: inline-block;
-  background: white;
-  padding: 3px;
-  color: black;
-  font-size: 1.4em;
-  text-decoration: none;
-  margin-bottom: 40px;
-}
-
-#navegation span{
-  color:white;
-  font-size: 2em;
-}
-
-#navegation p{
-  font-size: .8em;
-}
-
-#next, #previous{
-  cursor: pointer;
-}
-
-#chapterDescription{
-  overflow-y: scroll;
-  max-height: 360px;
-}
-
-#chapterDescription::-webkit-scrollbar {
-  width: 0.6em;
-  padding: 30px;
-}
-
-#chapterDescription::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
-}
-
-#chapterDescription::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
-}
-
-svg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
 .colors{
   height: 20px;
   background: -webkit-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
@@ -208,22 +120,6 @@ svg {
   background: -moz-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
   /* Standard syntax */
   background: linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
-}
-
-#text-div{
-  position: absolute;
-  width: 66%;
-  text-align: center;
-  -webkit-animation-duration: 4s;
-  animation-duration: 4s;
-  color: #ffffff;
-  z-index: 100;
-  font-size: 1.3em;
-}
-
-#titleMap{
-  -webkit-animation-duration: 6s;
-  animation-duration: 6s;
 }
 
 .chapterName{
@@ -273,6 +169,226 @@ svg {
   animation-duration: 2s;
   -webkit-animation-delay: 0s;
   animation-delay: 0s;
+}
+
+.labelUsaDescription{
+  font-size: 0.5em;
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  padding: 5px;
+  background-color: #41607A;
+}
+
+.creditsSubTitle{
+  display: inline;
+  font-size: 12px;
+  background-color: white;
+  color: black;
+  padding: 2px;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+  font: 12px sans-serif;
+  background: white;
+  border: 0px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.mapboxgl-popup {
+  max-width: 400px;
+  font-size: 12px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+
+.moveInfinite{
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+}
+
+.stopInfinite{
+  animation-iteration-count: none;
+  -webkit-animation-iteration-count: none;
+}
+
+:focus {
+  outline: none;
+}
+
+.militarybases{
+  font-size: 0.8em !important;
+  display: inline;
+}
+
+.circle{
+  width 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.labelbody {
+  margin: 2px;
+  background: transparent;
+}
+
+.treemap-label{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1em;
+  color: #343434;
+  padding: 0.5em;
+}
+
+.sam{
+  text-overflow: ellipsis;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.thePoint{
+  display: none;
+  position: absolute;
+  top: 42%;
+  left: 39%;
+  z-index: 100;
+  text-align: center;
+}
+
+.thePoint{
+  max-width: 700px;
+  font-size: 20px;
+  color:black;
+  background-color: white;
+}
+
+.thePoint>span{
+  font-weight: bolder;
+  background-color: white;
+  font-size: 35px;
+  color: #b93c3c;
+}
+
+.textTip{
+  color: black;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.86);
+  width: 110px;
+  display: inline-block;
+  text-align: center;
+  font-size: 8px;
+  padding: 5px;
+}
+
+.samTip{
+  width: 110px;
+  display: inline-block;
+  margin: 10px;
+  height: 100px;
+}
+
+#home{
+  width: 100%;
+  height: 100%;
+  background: -webkit-linear-gradient(top left, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('../imgs/home@unauthorize.jpg') center center / cover;
+  background: -o-linear-gradient(top left, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('../imgs/home@unauthorize.jpg') center center / cover;
+  background: linear-gradient(to bottom right, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('../imgs/home@unauthorize.jpg') center center / cover;
+}
+
+#soundIcon{
+  position: absolute;
+  bottom: 3.5%;
+  right: 0.7%;
+  opacity: 0.5;
+}
+
+#map {
+  position: absolute;
+  top:0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: #0d0d12;
+}
+
+#progressBar{
+  width: 100%;
+  height: 2px;
+}
+
+#chapters{
+  margin-top: 50px;
+}
+
+#chapters h4{
+  display: inline-block;
+  background: white;
+  padding: 3px;
+  color: black;
+  font-size: 1.4em;
+  text-decoration: none;
+  margin-bottom: 40px;
+}
+
+#navegation span{
+  color:white;
+  font-size: 2em;
+}
+
+#navegation p{
+  font-size: .8em;
+}
+
+#next, #previous{
+  cursor: pointer;
+}
+
+#chapterDescription{
+  overflow-y: scroll;
+  max-height: 45vh;
+}
+
+#chapterDescription::-webkit-scrollbar {
+  width: 0.6em;
+  padding: 30px;
+}
+
+#chapterDescription::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}
+
+#chapterDescription::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+#text-div{
+  position: absolute;
+  width: 66%;
+  text-align: center;
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+  color: #ffffff;
+  z-index: 100;
+  font-size: 1.3em;
+}
+
+#titleMap{
+  -webkit-animation-duration: 6s;
+  animation-duration: 6s;
+}
+
+#animations{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 100;
+  width: 400px;
+  height: 500px;
 }
 
 #navegation{
@@ -325,84 +441,29 @@ svg {
 }
 
 #credits{
-  display: none;
-  position: absolute;
-  width: 40%;
-  left:30%;
-  top:15%;
-  text-align: center;
-  color: #ffffff;
-  z-index: 1000;
-  font-size: 1em;
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-delay: 0s;
-  animation-delay: 0s;
 }
 
-#textUsaDescription{
-  font-size: 1em;
-}
-
-.labelUsaDescription{
-  font-size: 0.5em;
-  color: rgb(255, 255, 255);
-  display: inline-block;
-  padding: 5px;
-  background-color: #41607A;
-}
-
-.creditsTitle{
-  display: inline;
-  font-size: 1.7em;
-  text-decoration: underline;
-}
-
-.creditsSubTitle{
-  display: inline;
-  font-size: 12px;
-  background-color: white;
-  color: black;
-  padding: 2px;
-}
-
-.creditsDownload{
-  margin-top: 15%;
-}
-
-#creditsLogo{
-  margin-top: 7%;
-}
-
-.creditsData{
-  margin-top: 5%;
-}
-
-.creditsLink{
-  margin-top: 2%;
-}
-
-.creditsLink>p{
+#credits>p{
   display: inline;
   font-size: 0.7em;
   color: white;
   padding: 2px 5px;
 }
 
-.creditsLink>p>a{
+#credits>a>p{
   color: white;
+  font-size: 0.7em;
+  margin: 15px;
 }
 
-div.tooltip {
+#textUsaDescription{
+  font-size: 1em;
+}
+
+#sam{
   position: absolute;
-  text-align: center;
-  padding: 10px;
-  margin: 5px;
-  font: 12px sans-serif;
-  background: white;
-  border: 0px;
-  border-radius: 2px;
-  pointer-events: none;
+  top: 12em;
+  left: 0px;
 }
 
 #text-div-2{
@@ -425,24 +486,8 @@ div.tooltip {
   font-size: 1.3em;
 }
 
-.mapboxgl-popup {
-  max-width: 400px;
-  font-size: 12px;
-  font-family: 'Open Sans', sans-serif;
-}
-
 #d3-2{
   display: none;
-}
-
-.moveInfinite{
-  animation-iteration-count: infinite;
-  -webkit-animation-iteration-count: infinite;
-}
-
-.stopInfinite{
-  animation-iteration-count: none;
-  -webkit-animation-iteration-count: none;
 }
 
 #militaryBasesKey{
@@ -451,36 +496,6 @@ div.tooltip {
   right: 1%;
   display:none;
 }
-
-.militaryBases{
-  border-radius: 50%;
-  background-color: rgba(247, 184, 43, 0.72);
-  width: 20px;
-  height: 20px;
-}
-
-.unconfirmedMilitaryBases{
-  border-radius: 50%;
-  background-color: rgba(247, 10, 43, 0.72);
-  width: 20px;
-  height: 20px;
-}
-
-.militaryBasesText{
-  font-size: 0.9em;
-  background-color: rgba(247, 184, 43, 0.72);
-  display: inline-block;
-  padding: 2px;
-}
-
-.unconfirmedMilitaryBasesText{
-  font-size: 0.9em;
-  background-color: rgba(247, 10, 43, 0.72);
-  display: inline-block;
-  padding: 2px;
-}
-
-
 
 #text-div-4{
   width: 66%;
@@ -492,10 +507,6 @@ div.tooltip {
   font-size: 1.35em;
 }
 
-:focus {
-  outline: none;
-}
-
 #unsupported{
   position: absolute;
   top: 40%;
@@ -505,45 +516,11 @@ div.tooltip {
   text-align: center;
 }
 
-.labelbody {
-  margin: 2px;
-  background: transparent;
-}
-
-.treemap-label{
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.1em;
-  color: #343434;
-  padding: 0.5em;
-}
-
-.sam{
-  text-overflow: ellipsis;
-  text-align: left;
-  word-wrap: break-word;
-}
-
-.thePoint{
-  display: none;
-  position: absolute;
-  top: 42%;
-  left: 39%;
-  z-index: 100;
-  text-align: center;
-}
-
-.thePoint{
-  max-width: 700px;
-  font-size: 20px;
-  color:black;
-  background-color: white;
-}
-
-.thePoint>span{
-  font-weight: bolder;
-  background-color: white;
-  font-size: 35px;
-  color: #b93c3c;
+#quote{
+  background: rgba(255, 255, 255, 0.8);
+  color: black;
+  padding: 3px;
+  margin-top: 10px;
 }
 
 #finalImage{
@@ -554,8 +531,35 @@ div.tooltip {
   max-width: 100%;
 }
 
-#d3{
-  /*position: absolute;
-  top: 10%;
-  left: 30%;*/
+#textScene{
+  text-align: center;
+  color: white;
+  position: relative;
+  top: 100px;
+}
+
+#tooltip{
+  position: absolute;
+  z-index: 999;
+  width: 160px;
+  background: rgba(255, 251, 251, 1);
+  font-size: 10px;
+  text-align: center;
+  padding: 10px;
+}
+
+#usaTip{
+  position: absolute;
+  top: 75vh;
+  font-size: 7px;
+}
+
+#usaTip > div{
+  height: 42px;
+  width: 20em;
+  padding-top: 5px;
+}
+
+#basesLegend{
+  margin-bottom: 3vh;
 }

@@ -2,9 +2,9 @@
 // Main File
 //====================
 
-import {map} from './map';
-import {bar} from './progressBar'
-import {previousScene, nextScene} from './control'
+import { map } from './map';
+import { bar } from './progressBar';
+import { previousScene, nextScene } from './control';
 
 let loaded = () =>  {
   // Get the buttons
@@ -14,7 +14,8 @@ let loaded = () =>  {
   // Listen for the elements
   previous.addEventListener('click', previousScene);
   next.addEventListener('click', nextScene);
-}
+
+};
 
 // On window loaded
-window.addEventListener('load',loaded);
+window.addEventListener('load', loaded);

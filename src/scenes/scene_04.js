@@ -2,23 +2,28 @@
 // Scene 04: US budget
 //====================
 
-import { cleanScene03 } from './scene_03';
 import mapboxgl from 'mapbox-gl';
 import { map } from './../map';
 import { usa } from './../texts';
 import * as d3 from 'd3';
 import { colors } from './../colors';
+import { hideNext, showNext } from './../buttons';
+import { cleanScene03 } from './scene_03';
+import { cleanScene05 } from './scene_05';
 
 let animations = [];
 let text = document.getElementById('textScene');
 let tips = document.getElementsByClassName('tip');
 
 let Scene04 = () => {
+  text.style.top = '100px';
+  hideNext();
   cleanScene03();
+  cleanScene05();
 
-  animations[0] = new Animate('totalAmount', 0.8, 1000000, 0 , 2000);
-  animations[1] = new Animate('topHundred', 0.8, 500000, 1, 11500);
-  animations[2] = new Animate('defense', 0.8, 250000, 2, 22000);
+  animations[0] = new Animate('totalAmount', 0.8, 1000000, 0 , 500);
+  animations[1] = new Animate('topHundred', 0.8, 500000, 1, 9500);
+  animations[2] = new Animate('defense', 0.8, 250000, 2, 19000);
 };
 
 class Animate {
@@ -49,6 +54,11 @@ class Animate {
         map.setPaintProperty(this.name, 'fill-extrusion-height', this.height);
         this.height += 5000;
       }
+
+      if(this.msgNumber == 2){
+        showNext();
+      }
+
     }, this.time);
   }
 
@@ -60,7 +70,6 @@ class Animate {
     map.setPaintProperty(this.name, 'fill-extrusion-height', 0);
   }
 };
-
 
 let cleanScene04 = () => {
   text.childNodes[0].nodeValue = ' ';

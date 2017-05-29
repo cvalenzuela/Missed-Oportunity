@@ -21,6 +21,10 @@ let Scene06 = () => {
   cleanScene03();
   cleanScene05();
 
+  map.setPaintProperty('satellite', 'raster-opacity', 0.1);
+  map.setPaintProperty('admin-2-boundaries', 'line-opacity', 0.1);
+  map.setPaintProperty('water', 'fill-opacity', 0.1);
+
   d3.select('#textScene').style('top', '50px')
   text.html(sam[0] + '</br><div id="quote">' + sam[1] + '</div>');
 

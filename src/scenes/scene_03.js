@@ -3,11 +3,12 @@
 //====================
 
 import * as d3 from 'd3';
-import { cleanScene02 } from './scene_02';
 import mapboxgl from 'mapbox-gl';
 import { map, projectPoint} from './../map';
 import { colors } from '../colors';
 import { cleanScene04 } from './scene_04';
+import { cleanScene02 } from './scene_02';
+import { hideNext, showNext } from './../buttons';
 
 let key = d3.select('#colorsGradient');
 let container = map.getCanvasContainer();
@@ -16,6 +17,7 @@ let svg;
 let Scene03 = () => {
   cleanScene02();
   cleanScene04();
+  hideNext();
 
   key.style('display', 'block');
 

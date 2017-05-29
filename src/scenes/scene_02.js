@@ -6,6 +6,7 @@ import * as d3 from 'd3';
 import { introduction } from './../texts';
 import { colors } from '../colors';
 import { cleanScene03 } from './scene_03';
+import { hideNext, showNext } from './../buttons';
 
 let width = 400;
 let height = 500;
@@ -16,17 +17,23 @@ let dimension = 36;
 let totalSquares = dimension * dimension;
 let subScenes = [];
 let cueAnimations = [];
-let cueTimes = [200, 4000, 13000, 19000, 27000, 30000];
+let cueTimes = [200, 4000, 11000, 17000, 25000, 28000];
 let text = d3.select('#textScene');
 let svg = d3.select('#animations').append('svg');
+text.style('-webkit-animation-duration:', '4s');
 svg.style('position', 'relative');
 svg.style('left', '0em');
 svg.style('top', '10em');
 svg.style('width', width);
 svg.style('height', height);
+svg.attr('class', 'animated');
+svg.style('-webkit-animation-duration:', '3s');
 
 let Scene02 = () => {
   cleanScene03();
+  cssRemoveAnimate()
+  hideNext();
+  text.style('top', '100px')
 
   for (let j = 4; j < dimension * sSize; j += sSize) {
     for (let i = 4; i < dimension * sSize; i += sSize) {
@@ -50,6 +57,9 @@ let Scene02 = () => {
 
 // A single square
 subScenes[0] = () => {
+  cssRemoveAnimate();
+  cssAddAnimate();
+
   text.html(introduction[0]);
   var middle = Math.round(dimension / 2);
   var third = Math.round(dimension / 3);
@@ -62,6 +72,9 @@ subScenes[0] = () => {
 
 // Total Squares
 subScenes[1] = () => {
+  cssRemoveAnimate();
+  cssAddAnimate();
+
   text.html(introduction[1]);
   for (var i = 0; i < totalSquares; i++) {
     squares[i].transition()
@@ -76,7 +89,7 @@ subScenes[1] = () => {
 
 // Male and female
 subScenes[2] = () => {
-  text.html('<div style="color: ' + colors.b[3] + ' ">' + introduction[2] + '</div><br/><div style="color:' + colors.a[0] + '">' + introduction[3] + '</div>');
+  text.html('<div style="color: ' + colors.b[3] + ' ">' + introduction[2] + '</div>\n<div style="color:' + colors.a[0] + '">' + introduction[3] + '</div>');
   let female = 713;
   let male = 583;
   let total = female + male;
@@ -102,10 +115,12 @@ subScenes[2] = () => {
 
 // Explotation
 subScenes[3] = () => {
-  text.html('<div style="color: ' + colors.b[2] + ' ">' + introduction[4] + '</div><br/><div style="color:' + colors.a[0] + '">' + introduction[5] + '</div>');
+  text.html('<div style="color: ' + colors.b[2] + ' ">' + introduction[4] + '</div>\n<div style="color:' + colors.a[0] + '">' + introduction[5] + '</div>');
   let total = 1166;
   let all = 1296;
   let rest = all - total;
+
+  cssRemoveAnimate();
 
   for (let i = 0; i < total; i++) {
     squares[i].transition()
@@ -142,6 +157,8 @@ subScenes[4] = () => {
 };
 
 subScenes[5] = () => {
+  cssAddAnimate();
+  showNext();
   text.html(introduction[6]);
 };
 
@@ -154,6 +171,18 @@ let cleanScene02 = () =>  {
   cueAnimations.forEach((a) => {
     clearTimeout(a);
   });
+
+  showNext();
 };
+
+let cssAddAnimate = () => {
+  text.classed('fadeInDown', true);
+  svg.classed('fadeInDown', true);
+}
+
+let cssRemoveAnimate = () => {
+  text.classed('fadeInDown', false);
+  svg.classed('fadeInDown', false);
+}
 
 export { Scene02, cleanScene02 };

@@ -3,7 +3,8 @@
 //====================
 
 import { cleanScene04 } from './scene_04';
-import { Scene03 } from './scene_03';
+import { cleanScene03, Scene03 } from './scene_03';
+import { cleanScene06 } from './scene_06';
 import * as d3 from 'd3';
 import mapboxgl from 'mapbox-gl';
 import { map, projectPoint } from './../map';
@@ -11,14 +12,21 @@ import { colors } from './../colors'
 
 let key = d3.select('#basesLegend');
 let container = map.getCanvasContainer();
-let svg;
+let svg = d3.select(container).append('svg');
 
 let Scene05 = () => {
+  cleanScene03();
   cleanScene04();
+  cleanScene06();
+
   Scene03();
 
+  map.setPaintProperty('satellite', 'raster-opacity', 0.44);
+  map.setPaintProperty('admin-2-boundaries', 'line-opacity', 1);
+  map.setPaintProperty('water', 'fill-opacity', 1);
+
   d3.select('#textScene').style('top', '100px')
-  
+
   d3.json('../../assets/data/militarybases.geojson', function (data) {
     drawPoints(data.features);
   })
@@ -27,7 +35,6 @@ let Scene05 = () => {
 let drawPoints = (points) => {
   key.style('display', 'block');
 
-  svg = d3.select(container).append('svg');
   svg.style('position', 'absolute');
   svg.style('top', '0');
   svg.style('left', '0');
@@ -106,8 +113,10 @@ let latlng = (lat, lng) => {
 
 let cleanScene05 = () =>  {
   key.style('display', 'none');
-  if (svg != undefined)
+  if (svg != undefined){
     svg.selectAll('*').remove();
+    // svg.remove()
+  }
 };
 
 export { Scene05,  cleanScene05 };

@@ -7,6 +7,9 @@ import { bar } from './progressBar';
 import { map } from './map';
 import { locations } from './locations';
 import { Scene01, Scene02, Scene03, Scene04, Scene05, Scene06, Scene07, Scene08, Scene09 } from './scenes/scenes';
+import { hideNext, showNext } from './buttons';
+import { cleanScene03 } from './scenes/scene_03';
+import { cleanScene05 } from './scenes/scene_05';
 
 let chapter = 1;
 
@@ -29,7 +32,7 @@ let changeScene = (scene) => {
     });
 
     chapter = 1;
-    scene == 1 ? Scene01() : Scene02();
+    scene == 1 ? Scene01() : map.once('moveend', function(){Scene02()});
   }
 
   // Chapter 2: Slavery in the World
@@ -45,6 +48,10 @@ let changeScene = (scene) => {
 
     chapter = 2;
     Scene03();
+
+    map.once('moveend', function(){
+      showNext();
+    })
   }
 
   // Chapter 3: The US
@@ -59,7 +66,12 @@ let changeScene = (scene) => {
     });
 
     chapter = 3;
-    Scene04()
+    cleanScene03();
+    cleanScene05();
+    map.once('moveend', function(){
+      Scene04()
+    })
+
   }
 
   // Chapter 4: Military Bases in the World
@@ -75,6 +87,9 @@ let changeScene = (scene) => {
 
     chapter = 4;
     Scene05();
+    map.once('moveend', function(){
+      showNext();
+    })
   }
 
   // Chapter 5: The FAR

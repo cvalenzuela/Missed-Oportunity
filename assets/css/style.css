@@ -109,7 +109,7 @@ p{
 }
 
 .colors{
-  height: 20px;
+  height: 10px;
   background: -webkit-linear-gradient(left,#fff7ec,#fee8c8,#fdd49e,#fdbb84,#fc8d59,#ef6548,#d7301f,#b30000,#7f0000);
   background: #fff7ec; /* For browsers that do not support gradients */
   /* For Safari 5.1 to 6.0 */
@@ -321,7 +321,8 @@ div.tooltip {
 }
 
 #chapters{
-  margin-top: 50px;
+  margin-top: 4vh;
+  max-height: 55px;
 }
 
 #chapters h4{
@@ -399,7 +400,7 @@ div.tooltip {
   animation-delay: 4s;
   position: absolute;
   width: 90%;
-  bottom: 12%;
+  bottom: 8vh;
 }
 
 #logoCenter{
@@ -438,9 +439,6 @@ div.tooltip {
   animation-duration: 4s;
   -webkit-animation-delay: 0s;
   animation-delay: 0s;
-}
-
-#credits{
 }
 
 #credits>p{
@@ -536,6 +534,7 @@ div.tooltip {
   color: white;
   position: relative;
   top: 100px;
+  -webkit-animation-duration: 3s;
 }
 
 #tooltip{

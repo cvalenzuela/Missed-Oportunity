@@ -22,7 +22,7 @@ if (!mapboxgl.supported()) {
     hash: true,
     interactive: true,
     attributionControl: true,
-    scrollZoom: true,
+    scrollZoom: false,
     maxZoom: 8,
     minZoom: 1.2,
     renderWorldCopies: false,

@@ -136,28 +136,7 @@ p{
   animation-delay: 3s;
 }
 
-.chapterDescriptionTwo{
-  -webkit-animation-duration: 4s;
-  animation-duration: 4s;
-  -webkit-animation-delay: 3s;
-  animation-delay: 3s;
-}
-
 .chapterNameOff{
-  -webkit-animation-duration: 5s;
-  animation-duration: 5s;
-  -webkit-animation-delay: 1s;
-  animation-delay: 1s;
-}
-
-.chapterDescriptionOneOff{
-  -webkit-animation-duration: 5s;
-  animation-duration: 5s;
-  -webkit-animation-delay: 1s;
-  animation-delay: 1s;
-}
-
-.chapterDescriptionTwoOff{
   -webkit-animation-duration: 5s;
   animation-duration: 5s;
   -webkit-animation-delay: 1s;
@@ -206,17 +185,6 @@ div.tooltip {
 }
 
 
-
-.moveInfinite{
-  animation-iteration-count: infinite;
-  -webkit-animation-iteration-count: infinite;
-}
-
-.stopInfinite{
-  animation-iteration-count: none;
-  -webkit-animation-iteration-count: none;
-}
-
 :focus {
   outline: none;
 }
@@ -235,13 +203,6 @@ div.tooltip {
 .labelbody {
   margin: 2px;
   background: transparent;
-}
-
-.treemap-label{
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.1em;
-  color: #343434;
-  padding: 0.5em;
 }
 
 .sam{
@@ -299,13 +260,6 @@ div.tooltip {
   background: linear-gradient(to bottom right, rgba(0, 47, 75, 0.80), rgba(220,66, 37, 0.60)), url('../imgs/home@unauthorize.jpg') center center / cover;
 }
 
-#soundIcon{
-  position: absolute;
-  bottom: 3.5%;
-  right: 0.7%;
-  opacity: 0.5;
-}
-
 #map {
   position: absolute;
   top:0;
@@ -354,7 +308,7 @@ div.tooltip {
 }
 
 #chapterDescription::-webkit-scrollbar {
-  width: 0.6em;
+  width: 0.4em;
   padding: 30px;
 }
 
@@ -365,6 +319,11 @@ div.tooltip {
 #chapterDescription::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
+}
+
+#squaresSVG{
+  width: 400px;
+  height: 500px;
 }
 
 #text-div{

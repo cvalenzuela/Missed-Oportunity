@@ -21,6 +21,8 @@ let Scene06 = () => {
   cleanScene03();
   cleanScene05();
 
+  d3.select('#map').style('background', '#2c2b2b');
+
   map.setPaintProperty('satellite', 'raster-opacity', 0.1);
   map.setPaintProperty('admin-2-boundaries', 'line-opacity', 0.1);
   map.setPaintProperty('water', 'fill-opacity', 0.1);

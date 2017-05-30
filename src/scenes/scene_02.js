@@ -27,6 +27,7 @@ svg.style('top', '10em');
 svg.style('width', width);
 svg.style('height', height);
 svg.attr('class', 'animated');
+svg.attr('id', 'squaresSVG')
 svg.style('-webkit-animation-duration:', '3s');
 
 let Scene02 = () => {

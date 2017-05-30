@@ -3,7 +3,6 @@ module.exports = {
   output: {
     filename: './assets/js/bundle.js',
   },
-  watch: true,
   module: {
     loaders: [{
         test: /\.js$/,
